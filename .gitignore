@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+coverage/
+node_modules/
+mdast-util-toc.js
+mdast-util-toc.min.js

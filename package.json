@@ -1,0 +1,69 @@
+{
+  "name": "mdast-util-toc",
+  "version": "1.0.0",
+  "description": "Generate a Table of Contents (TOC) from a given Markdown file",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "build-md": "remark . --quiet --frail",
+    "build-bundle": "browserify index.js --no-builtins -s remarkTOC > mdast-util-toc.js",
+    "build-mangle": "esmangle mdast-util-toc.js > mdast-util-toc.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo index.js test",
+    "test-api": "node test/index.js",
+    "test-coverage": "istanbul cover test/index.js",
+    "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "keywords": [],
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+    "Jonathan Haines <jonno.haines@gmail.com> (http://barrythepenguin.github.io)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/barrythepenguin/mdast-util-toc.git"
+  },
+  "bugs": "https://github.com/barrythepenguin/mdast-util-toc/issues",
+  "license": "MIT",
+  "dependencies": {
+    "mdast-util-to-string": "^1.0.2",
+    "remark-slug": "^4.2.0"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "esmangle": "^1.0.1",
+    "istanbul": "^0.4.4",
+    "remark": "^5.0.1",
+    "remark-cli": "^1.0.0",
+    "remark-comment-config": "^4.0.1",
+    "remark-github": "^5.1.0",
+    "remark-lint": "^4.0.2",
+    "remark-parse": "^1.0.0",
+    "remark-stringify": "^1.0.0",
+    "remark-usage": "^4.0.0",
+    "remark-validate-links": "^4.0.0",
+    "tape": "^4.6.0",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "space": 4,
+    "rules": {
+      "valid-jsdoc": [
+        "error"
+      ],
+      "require-jsdoc": [
+        "error",
+        {
+          "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true
+          }
+        }
+      ]
+    }
+  }
+}
