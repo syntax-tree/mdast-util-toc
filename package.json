@@ -4,6 +4,7 @@
   "description": "Generate a Table of Contents (TOC) from a given Markdown file",
   "main": "index.js",
   "files": [
+    "lib",
     "index.js"
   ],
   "scripts": {
@@ -16,7 +17,11 @@
     "test-coverage": "istanbul cover test/index.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
   },
-  "keywords": [],
+  "keywords": [
+    "mdast",
+    "util",
+    "toc"
+  ],
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",

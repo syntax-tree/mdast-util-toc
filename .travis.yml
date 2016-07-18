@@ -22,6 +22,7 @@ deploy:
     file:
       - remark-toc.js
       - remark-toc.min.js
+    skip_cleanup: true
     on:
       tags: true
       node: '6.0'
