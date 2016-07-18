@@ -23,7 +23,7 @@ var toc = require('mdast-util-toc');
 Transform:
 
 ```javascript
-var file = remark().parse(([
+var input = remark().parse([
     '# Alpha',
     '',
     '## Bravo',
@@ -33,18 +33,9 @@ var file = remark().parse(([
     '## Delta',
     ''
 ].join('\n'));
-```
 
-Yields:
-
-```markdown
--   [Alpha]
-
-    -   [Bravo](#bravo)
-
-        -   [Charlie](#charlie)
-
-    -   [Delta](#delta)
+toc(input);
+// [ { type: 'list', ordered: false, children: [ { ... } ] } ]
 ```
 
 ## API
@@ -53,9 +44,8 @@ Yields:
 
 Generate a Table of Contents from a Markdown document.
 
-*   Looks for the first heading containing `"Table of Contents"`, `"toc"`,
-    or `table-of-contents` (case insensitive, supports alt/title attributes
-    for links and images too);
+*   If specified, looks for the first heading containing the `heading` option
+    (case insensitive, supports alt/title attributes for links and images too);
 
 *   Removes all following contents until an equal or higher heading is found;
 
