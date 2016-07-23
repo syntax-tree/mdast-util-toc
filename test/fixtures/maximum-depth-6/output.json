@@ -1,0 +1,172 @@
+{
+  "index": null,
+  "endIndex": null,
+  "map": {
+    "type": "list",
+    "ordered": false,
+    "children": [
+      {
+        "type": "listItem",
+        "loose": true,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#alpha",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Alpha"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "children": [
+              {
+                "type": "listItem",
+                "loose": true,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#bravo",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Bravo"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "ordered": false,
+                    "children": [
+                      {
+                        "type": "listItem",
+                        "loose": true,
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "link",
+                                "title": null,
+                                "url": "#charlie",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "value": "Charlie"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "ordered": false,
+                            "children": [
+                              {
+                                "type": "listItem",
+                                "loose": true,
+                                "children": [
+                                  {
+                                    "type": "paragraph",
+                                    "children": [
+                                      {
+                                        "type": "link",
+                                        "title": null,
+                                        "url": "#delta",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "value": "Delta"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "list",
+                                    "ordered": false,
+                                    "children": [
+                                      {
+                                        "type": "listItem",
+                                        "loose": true,
+                                        "children": [
+                                          {
+                                            "type": "paragraph",
+                                            "children": [
+                                              {
+                                                "type": "link",
+                                                "title": null,
+                                                "url": "#echo",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "value": "Echo"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "list",
+                                            "ordered": false,
+                                            "children": [
+                                              {
+                                                "type": "listItem",
+                                                "loose": false,
+                                                "children": [
+                                                  {
+                                                    "type": "paragraph",
+                                                    "children": [
+                                                      {
+                                                        "type": "link",
+                                                        "title": null,
+                                                        "url": "#foxtrot",
+                                                        "children": [
+                                                          {
+                                                            "type": "text",
+                                                            "value": "Foxtrot"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
