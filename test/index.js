@@ -3,7 +3,6 @@ var test = require('tape');
 var fs = require('fs');
 var path = require('path');
 var remark = require('remark');
-var slug = require('remark-slug');
 var toc = require('..');
 
 var read = fs.readFileSync;
@@ -37,10 +36,9 @@ test('Fixtures', function (t) {
         var result;
 
         config = exists(config) ? JSON.parse(read(config, 'utf-8')) : {};
-        slug()(input);
         result = compiler.compile({
             type: 'root',
-            children: toc(input, config)
+            children: toc(input, config).map
         });
 
         t.is(result, output, 'should work on `' + fixture + '`');

@@ -20,8 +20,8 @@ deploy:
     api_key:
       secure: bx7oTgpt1rSzisE0H60XTqVnwjBxJRBG60yWeoayCPgvSXXQGFw0oNv6nXiklF7CAvIg7aQWLUKMPvDn1W6+ICYPPfaWu+SgF+IkPoXfd+hT616QtEgSekTa1/5YEyc21D7J98EWG2CTmGUYDfjWDGBMoysPZuFGcyEAVLES8143uUdc5ybB9qoBhGi9dTULsCUd0wmuGnchGgqDfkqtQPPnt5wb09w+1mNcZ76nQ1bi2UWuIzeHt+fms3TNqfsNodcJX358V7EHo/V/vN3Y+br7XKrVH+TVgs01By+Ugo4mWeE3BPQqjM/vO4JtwcDSnDht8EJ5MzrHkrDtGnRuflD2rNu4IOMDOU9IjraKChgqFg+8ZRXXJWbjB13x4oUZYVRR23fs1gCley0wq2t5up6myP77xleFwPFfCECt5+tG0YH5kl6zKaPoDUZSxqLmbDAYw2vZDvEMBEZmWG0p7FfuZQY3lypBUyKYpR6ojB+b/b5VXF7WUExXYjSG+QokVzQ2SW6W6Pp6p/FvqwEuzXGVzMMq8Z2pvmqw8LcOVypu+1M9ktczrMOrZ1TmGhqUVfnfiHWQem8E8KX6U6PD84mZud33zFBigl21Eznjc7eLrf6sjj4HVNrR9vCsVhvTTV+9KqhVUnwZbzRl7BeDMg+udo4hmdYQSlSr31ube18=
     file:
-      - remark-toc.js
-      - remark-toc.min.js
+      - mdast-util-toc.js
+      - mdast-util-toc.min.js
     skip_cleanup: true
     on:
       tags: true

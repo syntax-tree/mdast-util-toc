@@ -34,8 +34,10 @@ var input = remark().parse([
     ''
 ].join('\n'));
 
-toc(input);
-// [ { type: 'list', ordered: false, children: [ { ... } ] } ]
+toc(input));
+
+// { map: [ { type: 'list', ordered: false, children: [{...}] } ],
+//   index: -1 }
 ```
 
 ## API
