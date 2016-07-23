@@ -7,7 +7,7 @@ Generate a Table of Contents from a [**mdast**][mdast] tree.
 [npm][]:
 
 ```bash
-npm install remark-toc
+npm install mdast-util-toc
 ```
 
 **mdast-util-toc** is also available as an AMD, CommonJS, and globals
@@ -48,7 +48,7 @@ Yields:
 ```js
 { index: null,
   endIndex: null,
-  map:
+  map: 
    { type: 'list',
      ordered: false,
      children: [ { type: 'listItem', loose: true, children: [Object] } ] } }
