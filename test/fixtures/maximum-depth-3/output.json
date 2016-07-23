@@ -1,0 +1,88 @@
+{
+  "index": null,
+  "endIndex": null,
+  "map": {
+    "type": "list",
+    "ordered": false,
+    "children": [
+      {
+        "type": "listItem",
+        "loose": true,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#alpha",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Alpha"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "children": [
+              {
+                "type": "listItem",
+                "loose": true,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#bravo",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Bravo"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "ordered": false,
+                    "children": [
+                      {
+                        "type": "listItem",
+                        "loose": false,
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "link",
+                                "title": null,
+                                "url": "#charlie",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "value": "Charlie"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

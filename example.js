@@ -2,8 +2,8 @@
 var remark = require('remark');
 var toc = require('./index.js');
 
-// Transform:
-var input = remark().parse([
+// Parse:
+var node = remark().parse([
     '# Alpha',
     '',
     '## Bravo',
@@ -14,5 +14,8 @@ var input = remark().parse([
     ''
 ].join('\n'));
 
+// TOC:
+var result = toc(node);
+
 // Yields:
-console.log('markdown', toc(input));
+console.log('js', require('util').inspect(result, {depth: 3}));

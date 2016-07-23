@@ -1,0 +1,82 @@
+{
+  "index": null,
+  "endIndex": null,
+  "map": {
+    "type": "list",
+    "ordered": false,
+    "children": [
+      {
+        "type": "listItem",
+        "loose": true,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#rules",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Rules"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "children": [
+              {
+                "type": "listItem",
+                "loose": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#foo-bar-baz",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Foo-bar-baz"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "listItem",
+        "loose": false,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#alpha-bravo-charlie",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Alpha-bravo-charlie"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

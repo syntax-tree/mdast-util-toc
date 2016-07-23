@@ -13,8 +13,6 @@ var ROOT = join(__dirname, 'fixtures');
 
 var fixtures = fs.readdirSync(ROOT);
 
-var compiler = new remark.Compiler();
-
 test('mdast-util-toc()', function (t) {
     t.is(typeof toc, 'function', 'should be a function');
 
@@ -30,18 +28,15 @@ test('Fixtures', function (t) {
         return filepath.indexOf('.') !== 0;
     }).forEach(function (fixture) {
         var filepath = join(ROOT, fixture);
-        var output = read(join(filepath, 'output.md'), 'utf-8');
+        var output = JSON.parse(read(join(filepath, 'output.json'), 'utf8'));
         var input = remark().parse(read(join(filepath, 'input.md'), 'utf-8'));
         var config = join(filepath, 'config.json');
         var result;
 
         config = exists(config) ? JSON.parse(read(config, 'utf-8')) : {};
-        result = compiler.compile({
-            type: 'root',
-            children: toc(input, config).map
-        });
+        result = toc(input, config);
 
-        t.is(result, output, 'should work on `' + fixture + '`');
+        t.deepEqual(result, output, 'should work on `' + fixture + '`');
     });
 
     t.end();

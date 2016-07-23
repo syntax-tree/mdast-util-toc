@@ -13,6 +13,8 @@ npm install remark-toc
 **mdast-util-toc** is also available as an AMD, CommonJS, and globals
 module, [uncompressed and compressed][releases].
 
+## Usage
+
 Dependencies:
 
 ```javascript
@@ -20,10 +22,10 @@ var remark = require('remark');
 var toc = require('mdast-util-toc');
 ```
 
-Transform:
+Parse:
 
 ```javascript
-var input = remark().parse([
+var node = remark().parse([
     '# Alpha',
     '',
     '## Bravo',
@@ -33,11 +35,23 @@ var input = remark().parse([
     '## Delta',
     ''
 ].join('\n'));
+```
 
-toc(input));
+TOC:
 
-// { map: [ { type: 'list', ordered: false, children: [{...}] } ],
-//   index: -1 }
+```javascript
+var result = toc(node);
+```
+
+Yields:
+
+```js
+{ index: null,
+  endIndex: null,
+  map:
+   { type: 'list',
+     ordered: false,
+     children: [ { type: 'listItem', loose: true, children: [Object] } ] } }
 ```
 
 ## API
@@ -46,14 +60,17 @@ toc(input));
 
 Generate a Table of Contents from a Markdown document.
 
-*   If specified, looks for the first heading containing the `heading` option
-    (case insensitive, supports alt/title attributes for links and images too);
+*   If specified, looks for the first heading containing the `heading`
+    option (case insensitive, supports alt/title attributes for links
+    and images too), and returns a table of contents for all following
+    headings.
 
-*   Removes all following contents until an equal or higher heading is found;
+*   If no `heading` is specified, creates a table of contents for all
+    headings in `node`.
 
-*   Inserts a list representation of the hierarchy of following headings;
-
-*   Adds links to following headings, using the same slugs as GitHub.
+Links to headings are based on GitHub’s style.  Only top-level headings
+(those not in blockquotes or lists), are used.  The given node is not
+modified.
 
 #### `options`
 
@@ -67,6 +84,25 @@ Generate a Table of Contents from a Markdown document.
 
 *   `tight` (`boolean?`, default: `false`)
     — Whether to compile list-items tightly.
+
+#### Returns
+
+An object with the following properties:
+
+*   `index` (`number?`)
+    — Position of the `heading` in `node`.  `-1` if no heading
+    was found, `null` if no heading was given;
+
+*   `endIndex` (`number?`)
+    — Position of the last node after `heading` before the TOC starts.
+    `-1` if no heading was found, `null` if no heading was given,
+    same as `index` if there are no nodes between `heading` and the
+    first heading in the TOC;
+
+*   `map` (`Node?`)
+    — List node representing the generated table of contents.
+    `null` if no table of contents could be created, either because
+    no `heading` didn’t exist, or no following headings were found.
 
 ## License
 

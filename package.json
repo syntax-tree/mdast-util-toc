@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build-md": "remark . --quiet --frail",
-    "build-bundle": "browserify index.js --no-builtins -s remarkTOC > mdast-util-toc.js",
+    "build-bundle": "browserify index.js --no-builtins -s mdastUtilTOC > mdast-util-toc.js",
     "build-mangle": "esmangle mdast-util-toc.js > mdast-util-toc.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
     "lint": "xo index.js test",
@@ -34,8 +34,9 @@
   "bugs": "https://github.com/barrythepenguin/mdast-util-toc/issues",
   "license": "MIT",
   "dependencies": {
+    "github-slugger": "^1.1.1",
     "mdast-util-to-string": "^1.0.2",
-    "remark-slug": "^4.2.0"
+    "unist-util-visit": "^1.1.0"
   },
   "devDependencies": {
     "browserify": "^13.0.1",

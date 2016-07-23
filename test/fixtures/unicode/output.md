@@ -1,1 +1,0 @@
--   [I ♥ unicode.](#i--unicode)
