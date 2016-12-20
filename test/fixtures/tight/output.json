@@ -70,6 +70,56 @@
                         ]
                       }
                     ]
+                  },
+                  {
+                    "type": "list",
+                    "ordered": false,
+                    "children": [
+                      {
+                        "type": "listItem",
+                        "loose": false,
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "link",
+                                "title": null,
+                                "url": "#yet-another-thing",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "value": "Yet Another Thing"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "listItem",
+                        "loose": false,
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "link",
+                                "title": null,
+                                "url": "#and-another-thing",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "value": "And another thing"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               }
