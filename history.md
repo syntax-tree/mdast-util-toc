@@ -2,6 +2,12 @@
 
 <!--lint disable no-multiple-toplevel-headings-->
 
+2.0.1 / 2016-07-23
+==================
+
+*   fix tight for all heading levels ([#3](https://github.com/barrythepenguin/mdast-util-toc/issues/3))
+*   bump devDependencies
+
 2.0.0 / 2016-07-23
 ==================
 
