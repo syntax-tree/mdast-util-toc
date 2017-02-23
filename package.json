@@ -50,7 +50,7 @@
     "remark-parse": "^2.2.0",
     "remark-stringify": "^2.3.0",
     "remark-usage": "^4.0.0",
-    "remark-validate-links": "^5.0.0",
+    "remark-validate-links": "^6.0.0",
     "tape": "^4.6.0",
     "xo": "^0.17.0"
   },
