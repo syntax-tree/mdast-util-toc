@@ -46,7 +46,7 @@
     "remark-cli": "^2.1.0",
     "remark-comment-config": "^4.0.1",
     "remark-github": "^6.0.1",
-    "remark-lint": "^5.4.0",
+    "remark-lint": "^6.0.0",
     "remark-parse": "^2.2.0",
     "remark-stringify": "^2.3.0",
     "remark-usage": "^4.0.0",
