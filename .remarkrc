@@ -1,8 +1,8 @@
 {
-  "output": true,
   "plugins": [
     "comment-config",
-    "lint",
+    "preset-lint-recommended",
+    "preset-lint-consistent",
     "github",
     "usage",
     "validate-links"
