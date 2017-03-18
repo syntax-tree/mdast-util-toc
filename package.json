@@ -51,10 +51,11 @@
     "remark-usage": "^5.0.0",
     "remark-validate-links": "^6.0.0",
     "tape": "^4.6.0",
-    "xo": "^0.17.0"
+    "xo": "^0.18.0"
   },
   "xo": {
     "space": 4,
+    "esnext": false,
     "rules": {
       "valid-jsdoc": [
         "error"
