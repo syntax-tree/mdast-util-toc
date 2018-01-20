@@ -42,7 +42,7 @@
     "browserify": "^15.0.0",
     "esmangle": "^1.0.1",
     "istanbul": "^0.4.4",
-    "remark": "^8.0.0",
+    "remark": "^9.0.0",
     "remark-cli": "^4.0.0",
     "remark-comment-config": "^5.0.0",
     "remark-github": "^7.0.0",
