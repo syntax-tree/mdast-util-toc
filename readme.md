@@ -83,7 +83,14 @@ Whether to compile list-items tightly (`boolean?`, default: `false`).
 ###### `options.parents`
 
 Allows headings to be children of certain node types.
-(`string[]`, default: `[]`, i.e. only top-level headings are used)
+Internally, it uses
+[unist-util-is](https://github.com/syntax-tree/unist-util-is) to check.
+Hence all types that can be passed in as first parameter can be used here,
+including `Function`, `string`, `Object` and `Array.<Test>`.
+Check
+[documentation](https://github.com/syntax-tree/unist-util-is#readme)
+for details.
+(default: `[]`, i.e. only top-level headings are used)
 
 Example:
 
