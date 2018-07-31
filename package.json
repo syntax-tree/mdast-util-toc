@@ -39,7 +39,7 @@
     "unist-util-visit": "^1.1.0"
   },
   "devDependencies": {
-    "browserify": "^15.0.0",
+    "browserify": "^16.0.0",
     "esmangle": "^1.0.1",
     "istanbul": "^0.4.4",
     "remark": "^9.0.0",
