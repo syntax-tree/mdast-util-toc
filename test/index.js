@@ -3,6 +3,7 @@ var test = require('tape');
 var fs = require('fs');
 var path = require('path');
 var remark = require('remark');
+var remarkAttr = require('remark-attr');
 var toc = require('..');
 
 var read = fs.readFileSync;
@@ -29,7 +30,7 @@ test('Fixtures', function (t) {
     }).forEach(function (fixture) {
         var filepath = join(ROOT, fixture);
         var output = JSON.parse(read(join(filepath, 'output.json'), 'utf8'));
-        var input = remark().parse(read(join(filepath, 'input.md'), 'utf-8'));
+        var input = remark().use(remarkAttr).parse(read(join(filepath, 'input.md'), 'utf-8'));
         var config = join(filepath, 'config.json');
         var result;
 
