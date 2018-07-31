@@ -9,4 +9,4 @@
 'use strict';
 
 /* Expose. */
-module.exports = require('./lib/index.js');
+module.exports = require('./lib');

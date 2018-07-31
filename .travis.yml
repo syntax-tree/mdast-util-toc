@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- '4.0'
-- '8.0'
+- '8'
+- '10'
 sudo: false
 after_success:
 - bash <(curl -s https://codecov.io/bash)
@@ -12,7 +12,7 @@ deploy:
       secure: IjSqlNrFIB507wJM1IN54lmym0cvjd6V12W3U6pqFDy4Kfz9Rm781AD0gTL9T5VMZp8cbSteclXEGS2SuGbY7+O20mstPQJoTTxgHCIo/RePZElZNU8WQmE/vt0Phru38Qi5c0sKnvxDukiS5bmkK1Bivlu0KME01ObCM1TQ33iHhiNkjhCDm9PUcdW0EMcEwfuVfwHBBL1e8ZnHgadeS9wIsiqGueJkdJ3iChkqt3DrFN0zjI1YHju2MqoUV2XM7bu2VLmvUoGsRq18JRciLHw7eoJVR2uXA96QMYJR6qMB9DLyilbTETLveWFV5p/lL+i0ELVs02EnRNBJKWzKmYH/QIyXOJuVAHeN+m+4ucyuXMfJ5j78krHeVvpr5dXT3UBcAQgwLIG+aDv32gdxsUF4jAP45ZAcVv9cNaC+DmRuTN69e4yr22BYd3OtquYmapnW2YZ4q4OZ3f8BE1y8aK7K5mC+u0nIgc8z/DvitwLkOr8uYbZQtxL8rdNRXfKqIvRw49hsEzSxwspgYqdiACa58bW8lDymYednCE0/QwuI0wzVnCSwhCYJARe2ebyewZZ3TLGCOyWLylcl06L+6WvW3tn+yGu3Fi0pwprWRQZe+D745WuHD52KRx3rs3bxQ7gBT2LLIjcV74WWRcgRujWGg8oBbjfG3Et9Z//sjns=
     on:
       tags: true
-      node: '4.0'
+      node: '8'
   - provider: releases
     api_key:
       secure: bx7oTgpt1rSzisE0H60XTqVnwjBxJRBG60yWeoayCPgvSXXQGFw0oNv6nXiklF7CAvIg7aQWLUKMPvDn1W6+ICYPPfaWu+SgF+IkPoXfd+hT616QtEgSekTa1/5YEyc21D7J98EWG2CTmGUYDfjWDGBMoysPZuFGcyEAVLES8143uUdc5ybB9qoBhGi9dTULsCUd0wmuGnchGgqDfkqtQPPnt5wb09w+1mNcZ76nQ1bi2UWuIzeHt+fms3TNqfsNodcJX358V7EHo/V/vN3Y+br7XKrVH+TVgs01By+Ugo4mWeE3BPQqjM/vO4JtwcDSnDht8EJ5MzrHkrDtGnRuflD2rNu4IOMDOU9IjraKChgqFg+8ZRXXJWbjB13x4oUZYVRR23fs1gCley0wq2t5up6myP77xleFwPFfCECt5+tG0YH5kl6zKaPoDUZSxqLmbDAYw2vZDvEMBEZmWG0p7FfuZQY3lypBUyKYpR6ojB+b/b5VXF7WUExXYjSG+QokVzQ2SW6W6Pp6p/FvqwEuzXGVzMMq8Z2pvmqw8LcOVypu+1M9ktczrMOrZ1TmGhqUVfnfiHWQem8E8KX6U6PD84mZud33zFBigl21Eznjc7eLrf6sjj4HVNrR9vCsVhvTTV+9KqhVUnwZbzRl7BeDMg+udo4hmdYQSlSr31ube18=
@@ -22,4 +22,4 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-      node: '8.0'
+      node: '8'

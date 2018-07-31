@@ -39,12 +39,12 @@
     "unist-util-visit": "^1.1.0"
   },
   "devDependencies": {
-    "browserify": "^15.0.0",
+    "browserify": "^16.2.1",
     "esmangle": "^1.0.1",
     "istanbul": "^0.4.4",
-    "remark": "^8.0.0",
     "remark-attr": "^0.6.2",
-    "remark-cli": "^4.0.0",
+    "remark": "^9.0.0",
+    "remark-cli": "^5.0.0",
     "remark-comment-config": "^5.0.0",
     "remark-github": "^7.0.0",
     "remark-preset-lint-consistent": "^2.0.0",
@@ -52,7 +52,7 @@
     "remark-usage": "^6.0.0",
     "remark-validate-links": "^7.0.0",
     "tape": "^4.6.0",
-    "xo": "^0.18.0"
+    "xo": "^0.21.1"
   },
   "xo": {
     "space": 4,
