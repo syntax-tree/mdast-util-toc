@@ -2,6 +2,13 @@
 
 <!--lint disable no-multiple-toplevel-headings-->
 
+2.1.0 / 2018-08-01
+==================
+
+*   use existing ids ([#34](https://github.com/BarryThePenguin/mdast-util-toc/pull/34))
+*   update to node 10 in `.travis.yml` ([#35](https://github.com/BarryThePenguin/mdast-util-toc/pull/35))
+*   bump devDependencies
+
 2.0.1 / 2016-07-23
 ==================
 

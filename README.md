@@ -51,7 +51,7 @@ Yields:
   map: 
    { type: 'list',
      ordered: false,
-     children: [ { type: 'listItem', loose: true, children: [Array] } ] } }
+     children: [ { type: 'listItem', loose: true, children: [Object] } ] } }
 ```
 
 ## API
