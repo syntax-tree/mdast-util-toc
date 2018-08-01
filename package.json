@@ -12,7 +12,7 @@
     "build-bundle": "browserify index.js --no-builtins -s mdastUtilTOC > mdast-util-toc.js",
     "build-mangle": "esmangle mdast-util-toc.js > mdast-util-toc.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
-    "lint": "xo index.js test",
+    "lint": "xo",
     "test-api": "node test/index.js",
     "test-coverage": "istanbul cover test/index.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
@@ -57,6 +57,10 @@
   "xo": {
     "space": 4,
     "esnext": false,
+    "prettier": true,
+    "ignore": [
+      "example.js"
+    ],
     "rules": {
       "valid-jsdoc": [
         "error"
