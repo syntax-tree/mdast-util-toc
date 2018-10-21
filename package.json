@@ -43,7 +43,7 @@
     "esmangle": "^1.0.1",
     "istanbul": "^0.4.4",
     "remark-attr": "^0.6.2",
-    "remark": "^9.0.0",
+    "remark": "^10.0.0",
     "remark-cli": "^5.0.0",
     "remark-comment-config": "^5.0.0",
     "remark-github": "^7.0.0",
