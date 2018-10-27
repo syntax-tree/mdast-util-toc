@@ -4,10 +4,12 @@
   "map": {
     "type": "list",
     "ordered": false,
+    "spread": false,
     "children": [
       {
         "type": "listItem",
         "loose": false,
+        "spread": false,
         "children": [
           {
             "type": "paragraph",
@@ -28,10 +30,12 @@
           {
             "type": "list",
             "ordered": false,
+            "spread": false,
             "children": [
               {
                 "type": "listItem",
                 "loose": false,
+                "spread": false,
                 "children": [
                   {
                     "type": "paragraph",
@@ -54,6 +58,7 @@
               {
                 "type": "listItem",
                 "loose": false,
+                "spread": false,
                 "children": [
                   {
                     "type": "paragraph",
@@ -74,10 +79,12 @@
                   {
                     "type": "list",
                     "ordered": false,
+                    "spread": false,
                     "children": [
                       {
                         "type": "listItem",
                         "loose": false,
+                        "spread": false,
                         "children": [
                           {
                             "type": "paragraph",
@@ -100,6 +107,7 @@
                       {
                         "type": "listItem",
                         "loose": false,
+                        "spread": false,
                         "children": [
                           {
                             "type": "paragraph",
@@ -130,6 +138,7 @@
       {
         "type": "listItem",
         "loose": false,
+        "spread": false,
         "children": [
           {
             "type": "paragraph",
