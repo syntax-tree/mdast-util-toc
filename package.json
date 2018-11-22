@@ -2,37 +2,23 @@
   "name": "mdast-util-toc",
   "version": "3.0.0",
   "description": "Generate a Table of Contents (TOC) from a given Markdown file",
-  "main": "index.js",
-  "files": [
-    "lib",
-    "index.js"
-  ],
-  "scripts": {
-    "build-md": "remark . --quiet --frail --output",
-    "build-bundle": "browserify index.js --no-builtins -s mdastUtilTOC > mdast-util-toc.js",
-    "build-mangle": "esmangle mdast-util-toc.js > mdast-util-toc.min.js",
-    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
-    "lint": "xo",
-    "test-api": "node test/index.js",
-    "test-coverage": "istanbul cover test/index.js",
-    "test": "npm run build && npm run lint && npm run test-coverage"
-  },
+  "license": "MIT",
   "keywords": [
     "mdast",
     "util",
     "toc"
   ],
-  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
-  "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
-    "Jonathan Haines <jonno.haines@gmail.com> (http://barrythepenguin.github.io)"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/barrythepenguin/mdast-util-toc.git"
-  },
+  "repository": "barrythepenguin/mdast-util-toc",
   "bugs": "https://github.com/barrythepenguin/mdast-util-toc/issues",
-  "license": "MIT",
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+    "Jonathan Haines <jonno.haines@gmail.com> (https://barrythepenguin.github.io)"
+  ],
+  "files": [
+    "lib",
+    "index.js"
+  ],
   "dependencies": {
     "github-slugger": "^1.1.1",
     "mdast-util-to-string": "^1.0.2",
@@ -40,41 +26,53 @@
   },
   "devDependencies": {
     "browserify": "^16.2.1",
-    "esmangle": "^1.0.1",
-    "istanbul": "^0.4.4",
-    "remark-attr": "^0.8.0",
+    "nyc": "^13.1.0",
+    "prettier": "^1.15.2",
     "remark": "^10.0.0",
+    "remark-attr": "^0.8.0",
     "remark-cli": "^6.0.0",
-    "remark-comment-config": "^5.0.0",
-    "remark-github": "^7.0.0",
-    "remark-preset-lint-consistent": "^2.0.0",
-    "remark-preset-lint-recommended": "^3.0.0",
-    "remark-usage": "^6.0.0",
-    "remark-validate-links": "^7.0.0",
+    "remark-preset-wooorm": "^4.0.0",
     "tape": "^4.6.0",
+    "tinyify": "^2.5.0",
     "xo": "^0.23.0"
   },
+  "scripts": {
+    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "build-bundle": "browserify . -s mdastUtilTOC > mdast-util-toc.js",
+    "build-mangle": "browserify . -s mdastUtilTOC -p tinyify > mdast-util-toc.min.js",
+    "build": "npm run build-bundle && npm run build-mangle",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test/index.js",
+    "test": "npm run format && npm run build && npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
   "xo": {
-    "space": 4,
-    "esnext": false,
     "prettier": true,
-    "ignore": [
-      "example.js"
-    ],
+    "esnext": false,
     "rules": {
-      "valid-jsdoc": [
-        "error"
-      ],
-      "require-jsdoc": [
-        "error",
-        {
-          "require": {
-            "FunctionDeclaration": true,
-            "MethodDefinition": true,
-            "ClassDeclaration": true
-          }
-        }
-      ]
-    }
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    },
+    "ignores": [
+      "mdast-util-toc.js"
+    ]
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }

@@ -1,7 +1,3 @@
-.DS_Store
-*.log
-.nyc_output/
 coverage/
-node_modules/
 mdast-util-toc.js
 mdast-util-toc.min.js
