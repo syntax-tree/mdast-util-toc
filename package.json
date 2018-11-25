@@ -8,8 +8,8 @@
     "util",
     "toc"
   ],
-  "repository": "barrythepenguin/mdast-util-toc",
-  "bugs": "https://github.com/barrythepenguin/mdast-util-toc/issues",
+  "repository": "syntax-tree/mdast-util-toc",
+  "bugs": "https://github.com/syntax-tree/mdast-util-toc/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",

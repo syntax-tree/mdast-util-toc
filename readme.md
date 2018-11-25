@@ -110,13 +110,13 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/BarryThePenguin/mdast-util-toc.svg
+[build-badge]: https://img.shields.io/travis/syntax-tree/mdast-util-toc.svg
 
-[build]: https://travis-ci.org/BarryThePenguin/mdast-util-toc
+[build]: https://travis-ci.org/syntax-tree/mdast-util-toc
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/BarryThePenguin/mdast-util-toc.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-toc.svg
 
-[coverage]: https://codecov.io/github/BarryThePenguin/mdast-util-toc
+[coverage]: https://codecov.io/github/syntax-tree/mdast-util-toc
 
 [downloads-badge]: https://img.shields.io/npm/dm/mdast-util-toc.svg
 
