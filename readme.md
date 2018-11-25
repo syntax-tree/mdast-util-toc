@@ -4,6 +4,8 @@
 [![Coverage][coverage-badge]][coverage]
 [![Downloads][downloads-badge]][downloads]
 [![Chat][chat-badge]][chat]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
 
 Generate a Table of Contents from **[mdast][]** trees.
 
@@ -125,6 +127,12 @@ repository, organisation, or community you agree to abide by its terms.
 [chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/remark
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
 
 [npm]: https://docs.npmjs.com/cli/install
 
