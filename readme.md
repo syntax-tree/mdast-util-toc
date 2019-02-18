@@ -60,6 +60,7 @@ If no `heading` is specified, creates a table of contents for all headings in
 
 Links to headings are based on GitHub’s style.
 Only top-level headings (those not in blockquotes or lists), are used.
+(Change this default behavior by using option `parents` as described below)
 The given node is not modified.
 
 ##### `options`
@@ -78,6 +79,21 @@ This is inclusive, thus, when set to `3`, level three headings, are included
 ###### `options.tight`
 
 Whether to compile list-items tightly (`boolean?`, default: `false`).
+
+###### `options.parents`
+
+Allows headings to be children of certain node types.
+(`string[]`, default: `[]`, i.e. only top-level headings are used)
+
+Example:
+
+```json
+{
+  "parents": ["section"]
+}
+```
+
+This would allow headings both on top-level and under `section` node to be used.
 
 ##### Returns
 
