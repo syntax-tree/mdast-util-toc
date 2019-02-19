@@ -96,11 +96,11 @@ Example:
 
 ```json
 {
-  "parents": ["section"]
+  "parents": ["blockquote"]
 }
 ```
 
-This would allow headings both on top-level and under `section` node to be used.
+This would allow headings both on top-level and under `blockquote` to be used.
 
 ##### Returns
 
