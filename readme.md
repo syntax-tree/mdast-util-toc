@@ -90,13 +90,13 @@ including `Function`, `string`, `Object` and `Array.<Test>`.
 Check
 [documentation](https://github.com/syntax-tree/unist-util-is#readme)
 for details.
-(default: `[]`, i.e. only top-level headings are used)
+(default: `"root"`, which only allows top-level headings)
 
 Example:
 
 ```json
 {
-  "parents": ["blockquote"]
+  "parents": ["root", "blockquote"]
 }
 ```
 
