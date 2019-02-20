@@ -60,6 +60,7 @@ If no `heading` is specified, creates a table of contents for all headings in
 
 Links to headings are based on GitHub’s style.
 Only top-level headings (those not in blockquotes or lists), are used.
+(Change this default behavior by using option `parents` as described below)
 The given node is not modified.
 
 ##### `options`
@@ -78,6 +79,28 @@ This is inclusive, thus, when set to `3`, level three headings, are included
 ###### `options.tight`
 
 Whether to compile list-items tightly (`boolean?`, default: `false`).
+
+###### `options.parents`
+
+Allows headings to be children of certain node types.
+Internally, it uses
+[unist-util-is](https://github.com/syntax-tree/unist-util-is) to check.
+Hence all types that can be passed in as first parameter can be used here,
+including `Function`, `string`, `Object` and `Array.<Test>`.
+Check
+[documentation](https://github.com/syntax-tree/unist-util-is#readme)
+for details.
+(default: the first parameter `node`, which only allows top-level headings)
+
+Example:
+
+```json
+{
+  "parents": ["root", "blockquote"]
+}
+```
+
+This would allow headings under either `root` or `blockquote` to be used.
 
 ##### Returns
 
