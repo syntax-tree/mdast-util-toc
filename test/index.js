@@ -4,6 +4,7 @@ var fs = require('fs')
 var path = require('path')
 var remark = require('remark')
 var remarkAttr = require('remark-attr')
+var u = require('unist-builder')
 var toc = require('..')
 
 var join = path.join
@@ -49,6 +50,68 @@ test('Fixtures', function(t) {
 
       t.deepEqual(actual, expected, name)
     })
+
+  t.end()
+})
+
+test('processing nodes', function(t) {
+  var rootNode = u('root', [
+    u('heading', {depth: 1}, [u('text', 'Alpha')]),
+    u('heading', {depth: 2}, [u('text', 'Bravo')])
+  ])
+
+  var parentNode = u('parent', rootNode.children)
+
+  var blockquoteNode = u('root', [
+    u('heading', {depth: 1}, [u('text', 'Charlie')]),
+    u('heading', {depth: 2}, [u('text', 'Delta')]),
+    u('blockquote', rootNode.children)
+  ])
+
+  const expectedRootMap = u('list', {ordered: false, spread: true}, [
+    u('listItem', {loose: true, spread: true}, [
+      u('paragraph', [
+        u('link', {title: null, url: '#alpha'}, [u('text', 'Alpha')])
+      ]),
+      u('list', {ordered: false, spread: false}, [
+        u('listItem', {loose: false, spread: false}, [
+          u('paragraph', [
+            u('link', {title: null, url: '#bravo'}, [u('text', 'Bravo')])
+          ])
+        ])
+      ])
+    ])
+  ])
+
+  t.deepEqual(
+    toc(rootNode),
+    {
+      index: null,
+      endIndex: null,
+      map: expectedRootMap
+    },
+    'can process root nodes'
+  )
+
+  t.deepEqual(
+    toc(parentNode),
+    {
+      index: null,
+      endIndex: null,
+      map: expectedRootMap
+    },
+    'can process non-root nodes'
+  )
+
+  t.deepEqual(
+    toc(blockquoteNode, {parents: 'blockquote'}),
+    {
+      index: null,
+      endIndex: null,
+      map: expectedRootMap
+    },
+    'can process custom parent nodes'
+  )
 
   t.end()
 })
