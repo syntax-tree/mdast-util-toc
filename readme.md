@@ -90,7 +90,7 @@ including `Function`, `string`, `Object` and `Array.<Test>`.
 Check
 [documentation](https://github.com/syntax-tree/unist-util-is#readme)
 for details.
-(default: `"root"`, which only allows top-level headings)
+(default: the first parameter `node`, which only allows top-level headings)
 
 Example:
 
@@ -100,7 +100,7 @@ Example:
 }
 ```
 
-This would allow headings both on top-level and under `blockquote` to be used.
+This would allow headings under either `root` or `blockquote` to be used.
 
 ##### Returns
 
