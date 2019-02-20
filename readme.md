@@ -19,31 +19,37 @@ npm install mdast-util-toc
 
 ## Usage
 
+Dependencies:
+
 ```javascript
+var util = require('util')
 var u = require('unist-builder')
 var toc = require('mdast-util-toc')
+```
 
+Given a mdast tree:
+
+```javascript
 var tree = u('root', [
   u('heading', {depth: 1}, [u('text', 'Alpha')]),
   u('heading', {depth: 2}, [u('text', 'Bravo')]),
   u('heading', {depth: 3}, [u('text', 'Charlie')]),
   u('heading', {depth: 2}, [u('text', 'Delta')])
 ])
-
-console.log(toc(tree))
 ```
 
 Yields:
 
-```js
+```javascript
+
 { index: null,
   endIndex: null,
-  map:
+  map: 
    { type: 'list',
      ordered: false,
      spread: true,
-     children:
-      [ { type: 'listItem', spread: true, children: [Array] } ] } }
+     children: 
+      [ { type: 'listItem', loose: true, spread: true, children: [Array] } ] } }
 ```
 
 ## API
