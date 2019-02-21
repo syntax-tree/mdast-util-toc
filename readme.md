@@ -44,11 +44,11 @@ Yields:
 
 { index: null,
   endIndex: null,
-  map: 
+  map:
    { type: 'list',
      ordered: false,
      spread: true,
-     children: 
+     children:
       [ { type: 'listItem', loose: true, spread: true, children: [Array] } ] } }
 ```
 
