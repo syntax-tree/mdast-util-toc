@@ -115,3 +115,67 @@ test('processing nodes', function(t) {
 
   t.end()
 })
+
+test('processing html node', function(t) {
+  var htmlNode = u('root', [
+    u('heading', {depth: 1}, [
+      u('text', {value: 'Hello '}),
+      u('html', {value: '<code>World</code>'})
+    ])
+  ])
+
+  var htmlNestedNode = u('root', [
+    u('heading', {depth: 1}, [
+      u('text', {value: 'Hello '}),
+      u('paragraph', [u('html', {value: '<div>World</div>'})])
+    ])
+  ])
+
+  const expectedHtmlMap = {
+    type: 'list',
+    ordered: false,
+    spread: false,
+    children: [
+      {
+        type: 'listItem',
+        loose: false,
+        spread: false,
+        children: [
+          {
+            type: 'paragraph',
+            children: [
+              {
+                type: 'link',
+                title: null,
+                url: '#hello-world',
+                children: [{type: 'text', value: 'Hello World'}]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+
+  t.deepEqual(
+    toc(htmlNode),
+    {
+      index: null,
+      endIndex: null,
+      map: expectedHtmlMap
+    },
+    'can process html nodes'
+  )
+
+  t.deepEqual(
+    toc(htmlNestedNode),
+    {
+      index: null,
+      endIndex: null,
+      map: expectedHtmlMap
+    },
+    'can process nested html nodes'
+  )
+
+  t.end()
+})
