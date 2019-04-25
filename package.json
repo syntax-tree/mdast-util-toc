@@ -21,7 +21,9 @@
   ],
   "dependencies": {
     "github-slugger": "^1.2.1",
+    "hast-util-to-string": "^1.0.1",
     "mdast-util-to-string": "^1.0.5",
+    "rehype": "^7.0.0",
     "unist-util-is": "^2.1.2",
     "unist-util-visit": "^1.1.0"
   },
