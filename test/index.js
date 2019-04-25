@@ -44,9 +44,13 @@ test('Fixtures', function(t) {
       actual = toc(
         remark()
           .use(remarkAttr)
-          .parse(input),
+          .parse(input, {footnotes: true}),
         config
       )
+
+      if (name === 'phrasing-content') {
+        console.dir(actual, {depth: null})
+      }
 
       t.deepEqual(actual, expected, name)
     })
