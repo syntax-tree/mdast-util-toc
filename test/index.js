@@ -48,10 +48,6 @@ test('Fixtures', function(t) {
         config
       )
 
-      if (name === 'phrasing-content') {
-        console.dir(actual, {depth: null})
-      }
-
       t.deepEqual(actual, expected, name)
     })
 
