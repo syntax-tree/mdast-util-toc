@@ -12,7 +12,7 @@
 
 # [^a footnote]
 
-# [^1]
+# footnote reference [^1]
 
 # ![image](image.png)
 
