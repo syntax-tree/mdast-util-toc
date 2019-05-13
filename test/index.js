@@ -2,7 +2,8 @@ var test = require('tape')
 
 var fs = require('fs')
 var path = require('path')
-var remark = require('remark')
+var unified = require('unified')
+var remarkParse = require('remark-parse')
 var remarkAttr = require('remark-attr')
 var u = require('unist-builder')
 var toc = require('..')
@@ -36,17 +37,19 @@ test('Fixtures', function(t) {
       var config = {}
       var expected = JSON.parse(output)
       var actual
+      var processor = unified()
 
       try {
         config = JSON.parse(fs.readFileSync(join(root, name, 'config.json')))
       } catch (error) {}
 
-      actual = toc(
-        remark()
-          .use(remarkAttr)
-          .parse(input),
-        config
-      )
+      processor.use(remarkParse, config.remarkParseOptions)
+
+      if (config.useRemarkAttr) {
+        processor.use(remarkAttr)
+      }
+
+      actual = toc(processor.parse(input), config)
 
       t.deepEqual(actual, expected, name)
     })
