@@ -42,14 +42,23 @@ Yields:
 
 ```javascript
 
-{ index: null,
+{
+  index: null,
   endIndex: null,
-  map:
-   { type: 'list',
-     ordered: false,
-     spread: true,
-     children:
-      [ { type: 'listItem', loose: true, spread: true, children: [Array] } ] } }
+  map: {
+    type: 'list',
+    ordered: false,
+    spread: true,
+    children: [
+      {
+        type: 'listItem',
+        loose: true,
+        spread: true,
+        children: [Array]
+      }
+    ]
+  }
+}
 ```
 
 ## API
@@ -85,6 +94,12 @@ This is inclusive, thus, when set to `3`, level three headings, are included
 ###### `options.tight`
 
 Whether to compile list-items tightly (`boolean?`, default: `false`).
+
+###### `options.prefix`
+
+Add a prefix to links to headings (`string?`, default: `null`).
+Useful for example when later going from mdast to hast and sanitizing with
+[`hast-util-sanitize`][hast-util-sanitize].
 
 ###### `options.parents`
 
@@ -174,3 +189,5 @@ repository, organisation, or community you agree to abide by its terms.
 [contributing]: https://github.com/syntax-tree/mdast/blob/master/contributing.md
 
 [coc]: https://github.com/syntax-tree/mdast/blob/master/code-of-conduct.md
+
+[hast-util-sanitize]: https://github.com/syntax-tree/hast-util-sanitize
