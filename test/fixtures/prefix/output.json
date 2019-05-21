@@ -1,0 +1,110 @@
+{
+  "index": null,
+  "endIndex": null,
+  "map": {
+    "type": "list",
+    "ordered": false,
+    "spread": true,
+    "children": [
+      {
+        "type": "listItem",
+        "loose": true,
+        "spread": true,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#user-contentsomething-if",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Something if"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "loose": false,
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#user-contentsomething-else",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Something else"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "loose": false,
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#user-contentsomething-elsefi",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Something elsefi"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "listItem",
+        "loose": false,
+        "spread": false,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#user-contentsomething-iffi",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Something iffi"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
