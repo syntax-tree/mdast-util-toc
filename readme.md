@@ -3,17 +3,18 @@
 [![Build][build-badge]][build]
 [![Coverage][coverage-badge]][coverage]
 [![Downloads][downloads-badge]][downloads]
-[![Chat][chat-badge]][chat]
+[![Size][size-badge]][size]
 [![Sponsors][sponsors-badge]][collective]
 [![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
-Generate a Table of Contents from **[mdast][]** trees.
+[**mdast**][mdast] utility to generate table of contents.
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install mdast-util-toc
 ```
 
@@ -63,33 +64,34 @@ Yields:
 
 ## API
 
-### `toc(node[, options])`
+### `toc(tree[, options])`
 
-Generate a Table of Contents from a Markdown document.
+Generate a Table of Contents from a [tree][].
 
-Looks for the first heading matching `options.heading` (case insensitive,
+Looks for the first [heading][] matching `options.heading` (case insensitive,
 supports alt/title attributes for links and images too), and returns a table
-of contents for all following headings.
+of contents ([list][]) for all following headings.
 If no `heading` is specified, creates a table of contents for all headings in
-`node`.
+`tree`.
+`tree` is not changed.
 
 Links to headings are based on GitHub’s style.
-Only top-level headings (those not in blockquotes or lists), are used.
-(Change this default behavior by using option `parents` as described below)
-The given node is not modified.
+Only top-level headings (those not in [blockquote][]s or [list][]s), are used.
+This default behavior can be changed by passing [`parents`][parents].
 
 ##### `options`
 
 ###### `options.heading`
 
-Heading to look for (`string`), wrapped in `new RegExp('^(' + value + ')$', 'i')`.
+[Heading][] to look for (`string`), wrapped in `new RegExp('^(' + value + ')$',
+'i')`.
 
 ###### `options.maxDepth`
 
 Maximum heading depth to include in the table of contents (`number`, default:
 `6`),
-This is inclusive, thus, when set to `3`, level three headings, are included
-(those with three hashes, `###`).
+This is inclusive: when set to `3`, level three headings are included (those
+with three hashes, `###`).
 
 ###### `options.tight`
 
@@ -97,31 +99,24 @@ Whether to compile list-items tightly (`boolean?`, default: `false`).
 
 ###### `options.prefix`
 
-Add a prefix to links to headings (`string?`, default: `null`).
-Useful for example when later going from mdast to hast and sanitizing with
-[`hast-util-sanitize`][hast-util-sanitize].
+Add a prefix to links to headings in the table of contents (`string?`,
+default: `null`).
+Useful for example when later going from [mdast][] to [hast][] and sanitizing
+with [`hast-util-sanitize`][hast-util-sanitize].
 
 ###### `options.parents`
 
-Allows headings to be children of certain node types.
-Internally, it uses
-[unist-util-is](https://github.com/syntax-tree/unist-util-is) to check.
-Hence all types that can be passed in as first parameter can be used here,
-including `Function`, `string`, `Object` and `Array.<Test>`.
-Check
-[documentation](https://github.com/syntax-tree/unist-util-is#readme)
-for details.
-(default: the first parameter `node`, which only allows top-level headings)
+Allows headings to be children of certain node [type][]s (default: the to `toc`
+given `tree`, to only allow top-level headings).
+Internally, uses [unist-util-is][is] to check, so `parents` can be any
+[`is`-compatible][is] test.
 
-Example:
+For example, this would allow headings under either `root` or `blockquote` to be
+used:
 
-```json
-{
-  "parents": ["root", "blockquote"]
-}
+```js
+toc(tree, {parents: ['root', 'blockquote']})
 ```
-
-This would allow headings under either `root` or `blockquote` to be used.
 
 ##### Returns
 
@@ -130,25 +125,27 @@ An object representing the table of contents.
 ###### Properties
 
 *   `index` (`number?`)
-    — Position of the `heading` in `node`.  `-1` if no heading
-    was found, `null` if no heading was given
+    — [Index][] of the found table of contents [heading][] in `tree`.
+    `-1` if no heading was found, `null` if no `heading` was given
 *   `endIndex` (`number?`)
-    — Position of the last node after `heading` before the TOC starts.
-    `-1` if no heading was found, `null` if no heading was given,
+    — [Index][] of the last node after `heading` before the TOC starts.
+    `-1` if no heading was found, `null` if no `heading` was given,
     same as `index` if there are no nodes between `heading` and the
     first heading in the TOC
 *   `map` (`Node?`)
-    — List node representing the generated table of contents.
+    — [List][] representing the generated table of contents.
     `null` if no table of contents could be created, either because
-    `heading` didn’t exist, or because no following headings were found
+    no heading was found or because no following headings were found
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/mdast`][contributing] for ways to get
+See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
 started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -156,21 +153,21 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/syntax-tree/mdast-util-toc.svg
+[build-badge]: https://img.shields.io/travis/syntax-tree/nlcst-is-literal.svg
 
-[build]: https://travis-ci.org/syntax-tree/mdast-util-toc
+[build]: https://travis-ci.org/syntax-tree/nlcst-is-literal
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-toc.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/nlcst-is-literal.svg
 
-[coverage]: https://codecov.io/github/syntax-tree/mdast-util-toc
+[coverage]: https://codecov.io/github/syntax-tree/nlcst-is-literal
 
-[downloads-badge]: https://img.shields.io/npm/dm/mdast-util-toc.svg
+[downloads-badge]: https://img.shields.io/npm/dm/nlcst-is-literal.svg
 
-[downloads]: https://www.npmjs.com/package/mdast-util-toc
+[downloads]: https://www.npmjs.com/package/nlcst-is-literal
 
-[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+[size-badge]: https://img.shields.io/bundlephobia/minzip/nlcst-is-literal.svg
 
-[chat]: https://spectrum.chat/unified/remark
+[size]: https://bundlephobia.com/result?p=nlcst-is-literal
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -178,16 +175,40 @@ repository, organisation, or community you agree to abide by its terms.
 
 [collective]: https://opencollective.com/unified
 
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/syntax-tree
+
 [npm]: https://docs.npmjs.com/cli/install
 
 [license]: license
 
 [author]: https://barrythepenguin.github.io
 
+[contributing]: https://github.com/syntax-tree/.github/blob/master/contributing.md
+
+[support]: https://github.com/syntax-tree/.github/blob/master/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/master/code-of-conduct.md
+
 [mdast]: https://github.com/syntax-tree/mdast
 
-[contributing]: https://github.com/syntax-tree/mdast/blob/master/contributing.md
-
-[coc]: https://github.com/syntax-tree/mdast/blob/master/code-of-conduct.md
+[hast]: https://github.com/syntax-tree/hast
 
 [hast-util-sanitize]: https://github.com/syntax-tree/hast-util-sanitize
+
+[is]: https://github.com/syntax-tree/unist-util-is
+
+[tree]: https://github.com/syntax-tree/unist#tree
+
+[type]: https://github.com/syntax-tree/unist#type
+
+[index]: https://github.com/syntax-tree/unist#index
+
+[heading]: https://github.com/syntax-tree/mdast#heading
+
+[list]: https://github.com/syntax-tree/mdast#list
+
+[blockquote]: https://github.com/syntax-tree/mdast#blockquote
+
+[parents]: #optionsparents
