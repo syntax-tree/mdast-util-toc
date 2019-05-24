@@ -23,7 +23,6 @@ npm install mdast-util-toc
 Dependencies:
 
 ```javascript
-var util = require('util')
 var u = require('unist-builder')
 var toc = require('mdast-util-toc')
 ```
@@ -37,6 +36,7 @@ var tree = u('root', [
   u('heading', {depth: 3}, [u('text', 'Charlie')]),
   u('heading', {depth: 2}, [u('text', 'Delta')])
 ])
+var table = toc(tree)
 ```
 
 Yields:

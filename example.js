@@ -1,5 +1,4 @@
 // Dependencies:
-var util = require('util')
 var u = require('unist-builder')
 var toc = require('.')
 
@@ -11,5 +10,7 @@ var tree = u('root', [
   u('heading', {depth: 2}, [u('text', 'Delta')])
 ])
 
+var table = toc(tree)
+
 // Yields:
-console.log('javascript', util.inspect(toc(tree), {depth: 3}))
+console.log('javascript', require('util').inspect(table, {depth: 3}))
