@@ -68,10 +68,6 @@
   "xo": {
     "prettier": true,
     "esnext": false,
-    "rules": {
-      "no-var": "off",
-      "prefer-arrow-callback": "off"
-    },
     "ignores": [
       "mdast-util-toc.js"
     ]
