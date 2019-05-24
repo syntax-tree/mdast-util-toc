@@ -153,21 +153,21 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/syntax-tree/nlcst-is-literal.svg
+[build-badge]: https://img.shields.io/travis/syntax-tree/mdast-util-toc.svg
 
-[build]: https://travis-ci.org/syntax-tree/nlcst-is-literal
+[build]: https://travis-ci.org/syntax-tree/mdast-util-toc
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/nlcst-is-literal.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-toc.svg
 
-[coverage]: https://codecov.io/github/syntax-tree/nlcst-is-literal
+[coverage]: https://codecov.io/github/syntax-tree/mdast-util-toc
 
-[downloads-badge]: https://img.shields.io/npm/dm/nlcst-is-literal.svg
+[downloads-badge]: https://img.shields.io/npm/dm/mdast-util-toc.svg
 
-[downloads]: https://www.npmjs.com/package/nlcst-is-literal
+[downloads]: https://www.npmjs.com/package/mdast-util-toc
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/nlcst-is-literal.svg
+[size-badge]: https://img.shields.io/bundlephobia/minzip/mdast-util-toc.svg
 
-[size]: https://bundlephobia.com/result?p=nlcst-is-literal
+[size]: https://bundlephobia.com/result?p=mdast-util-toc
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
