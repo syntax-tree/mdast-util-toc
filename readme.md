@@ -93,6 +93,13 @@ Maximum heading depth to include in the table of contents (`number`, default:
 This is inclusive: when set to `3`, level three headings are included (those
 with three hashes, `###`).
 
+###### `options.skip`
+
+Headings to skip (`string`, optional), wrapped in
+`new RegExp('^(' + value + ')$', 'i')`.
+Any heading matching this expression will not be present in the table of
+contents.
+
 ###### `options.tight`
 
 Whether to compile list-items tightly (`boolean?`, default: `false`).

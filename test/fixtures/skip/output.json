@@ -1,0 +1,186 @@
+{
+  "index": null,
+  "endIndex": null,
+  "map": {
+    "type": "list",
+    "ordered": false,
+    "spread": true,
+    "children": [
+      {
+        "type": "listItem",
+        "loose": true,
+        "spread": true,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#alpha",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Alpha"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": true,
+            "children": [
+              {
+                "type": "listItem",
+                "loose": true,
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#bravo",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Bravo"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "loose": true,
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#charlie",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Charlie"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "loose": true,
+                "spread": true,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#delta",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Delta"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "ordered": false,
+                    "spread": false,
+                    "children": [
+                      {
+                        "type": "listItem",
+                        "loose": false,
+                        "spread": false,
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "link",
+                                "title": null,
+                                "url": "#examples",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "value": "Examples"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "loose": true,
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#echo",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Echo"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "loose": false,
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#foxtrot",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Foxtrot"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
