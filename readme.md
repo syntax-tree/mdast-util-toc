@@ -109,7 +109,7 @@ Whether to compile list-items tightly (`boolean?`, default: `false`).
 Add a prefix to links to headings in the table of contents (`string?`,
 default: `null`).
 Useful for example when later going from [mdast][] to [hast][] and sanitizing
-with [`hast-util-sanitize`][hast-util-sanitize].
+with [`hast-util-sanitize`][sanitize].
 
 ###### `options.parents`
 
@@ -143,6 +143,39 @@ An object representing the table of contents.
     — [List][] representing the generated table of contents.
     `null` if no table of contents could be created, either because
     no heading was found or because no following headings were found
+
+## Security
+
+Use of `mdast-util-toc` does not involve [**hast**][hast], user content, or
+change the tree, so there are no openings for [cross-site scripting (XSS)][xss]
+attacks.
+
+Injecting `map` into the syntax tree may open you up to XSS attacks as existing
+nodes are copied into the table of contents.
+The following example shows how an existing script is copied into the table of
+contents.
+
+For the following Markdown:
+
+```markdown
+# Alpha
+
+## Bravo<script>alert(1)</script>
+
+## Charlie
+```
+
+Yields in `map`:
+
+```markdown
+-   [Alpha](#alpha)
+
+    -   [Bravo<script>alert(1)</script>](#bravoscriptalert1script)
+    -   [Charlie](#charlie)
+```
+
+Always use [`hast-util-santize`][sanitize] when transforming to
+[**hast**][hast].
 
 ## Contribute
 
@@ -202,7 +235,7 @@ abide by its terms.
 
 [hast]: https://github.com/syntax-tree/hast
 
-[hast-util-sanitize]: https://github.com/syntax-tree/hast-util-sanitize
+[sanitize]: https://github.com/syntax-tree/hast-util-sanitize
 
 [is]: https://github.com/syntax-tree/unist-util-is
 
@@ -219,3 +252,5 @@ abide by its terms.
 [blockquote]: https://github.com/syntax-tree/mdast#blockquote
 
 [parents]: #optionsparents
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
