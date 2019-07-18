@@ -1,7 +1,6 @@
-var test = require('tape')
-
 var fs = require('fs')
 var path = require('path')
+var test = require('tape')
 var unified = require('unified')
 var remarkParse = require('remark-parse')
 var remarkAttr = require('remark-attr')
