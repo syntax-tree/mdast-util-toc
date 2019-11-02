@@ -32,7 +32,7 @@ declare namespace mdastUtilToc {
 
   interface TOCOptions {
     heading?: string
-    maxDepth?: number
+    maxDepth?: Heading['depth']
     skip?: string
     tight?: boolean
     prefix?: string
