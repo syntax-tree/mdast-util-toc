@@ -12,9 +12,11 @@ declare namespace mdastUtilToc {
     heading?: string
 
     /**
-     * Maximum heading depth to include in the table of contents (default: `6`),
+     * Maximum heading depth to include in the table of contents,
      * This is inclusive: when set to `3`,
      * level three headings are included (those with three hashes, `###`).
+     *
+     * @default 6
      */
     maxDepth?: Heading['depth']
 
@@ -25,19 +27,22 @@ declare namespace mdastUtilToc {
     skip?: string
 
     /**
-     * Whether to compile list-items tightly (default: `false`).
+     * Whether to compile list-items tightly.
+     *
+     * @default false
      */
     tight?: boolean
 
     /**
-     * Add a prefix to links to headings in the table of contents (default: null).
+     * Add a prefix to links to headings in the table of contents.
      * Useful for example when later going from mdast to hast and sanitizing with `hast-util-sanitize`.
+     *
+     * @default null
      */
     prefix?: string
 
     /**
      * Allows headings to be children of certain node types
-     * (default: the to `toc` given `tree`, to only allow top-level headings).
      * Internally, uses `unist-util-is` to check, so `parents` can be any `is`-compatible test.
      *
      * For example, this would allow headings under either `root` or `blockquote` to be used:
@@ -45,6 +50,8 @@ declare namespace mdastUtilToc {
      * ```ts
      * toc(tree, {parents: ['root', 'blockquote']})
      * ```
+     *
+     * @default the to `toc` given `tree`, to only allow top-level headings
      */
     parents?: Test<Node> | Array<Test<Node>>
   }
