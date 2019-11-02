@@ -5,7 +5,6 @@ import {Parent, Heading, Link, Paragraph, List, ListItem} from 'mdast'
 import {Test} from 'unist-util-is'
 
 declare namespace mdastUtilToc {
-
   interface TOCOptions {
     /**
      * Heading to look for, wrapped in `new RegExp('^(' + value + ')$', 'i')`.
