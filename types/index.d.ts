@@ -46,6 +46,12 @@ declare namespace mdastUtilToc {
   }
 }
 
+/**
+ * Generate a Table of Contents from a tree.
+ *
+ * @param node searched for headings
+ * @param options configuration and settings
+ */
 declare function mdastUtilToc(
   node: Node,
   options?: mdastUtilToc.TOCOptions
