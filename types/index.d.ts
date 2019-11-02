@@ -46,9 +46,9 @@ declare namespace mdastUtilToc {
   }
 }
 
-declare function toc(
+declare function mdastUtilToc(
   node: Node,
   options?: mdastUtilToc.TOCOptions
 ): mdastUtilToc.TOCResult
 
-export = toc
+export = mdastUtilToc
