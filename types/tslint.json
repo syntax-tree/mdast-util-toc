@@ -7,7 +7,7 @@
     "no-void-expression": false,
     "only-arrow-functions": false,
     "semicolon": false,
-    "unified-signatures": false,
+    "unified-signatures": true,
     "whitespace": false,
     "strict-export-declare-modifiers": false
   }
