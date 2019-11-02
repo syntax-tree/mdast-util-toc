@@ -36,7 +36,7 @@ declare namespace mdastUtilToc {
     skip?: string
     tight?: boolean
     prefix?: string
-    parents?: Test<Node> | Array<Test<any>>
+    parents?: Test<Node> | Array<Test<Node>>
   }
 
   interface TOCResult {
