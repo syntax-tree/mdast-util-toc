@@ -1,25 +1,9 @@
-import {Parent} from 'unist'
+import {Link, Paragraph, List, ListItem} from 'mdast'
 
 import unified = require('unified')
 import u = require('unist-builder')
 import is = require('unist-util-is')
 import toc = require('mdast-util-toc')
-
-interface Link extends Parent {
-  type: 'link'
-}
-
-interface Paragraph extends Parent {
-  type: 'paragraph'
-}
-
-interface List extends Parent {
-  type: 'list'
-}
-
-interface ListItem extends Parent {
-  type: 'listItem'
-}
 
 const tree = u('root', [
   u('heading', {depth: 1}, [u('text', 'Alpha')]),
