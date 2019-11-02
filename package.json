@@ -22,6 +22,7 @@
     "index.js"
   ],
   "dependencies": {
+    "@types/mdast": "^3.0.3",
     "@types/unist": "^2.0.3",
     "extend": "^3.0.2",
     "github-slugger": "^1.2.1",
