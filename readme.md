@@ -50,14 +50,7 @@ Yields:
     type: 'list',
     ordered: false,
     spread: true,
-    children: [
-      {
-        type: 'listItem',
-        loose: true,
-        spread: true,
-        children: [Array]
-      }
-    ]
+    children: [ { type: 'listItem', spread: true, children: [Array] } ]
   }
 }
 ```

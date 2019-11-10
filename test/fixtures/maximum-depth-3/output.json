@@ -8,7 +8,6 @@
     "children": [
       {
         "type": "listItem",
-        "loose": true,
         "spread": true,
         "children": [
           {
@@ -34,7 +33,6 @@
             "children": [
               {
                 "type": "listItem",
-                "loose": true,
                 "spread": true,
                 "children": [
                   {
@@ -60,7 +58,6 @@
                     "children": [
                       {
                         "type": "listItem",
-                        "loose": false,
                         "spread": false,
                         "children": [
                           {

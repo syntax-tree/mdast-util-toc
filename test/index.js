@@ -9,7 +9,7 @@ var toc = require('..')
 
 var join = path.join
 
-test('mdast-util-toc()', function(t) {
+test('mdast-util-toc', function(t) {
   t.is(typeof toc, 'function', 'should be a function')
 
   t.throws(
@@ -71,12 +71,12 @@ test('processing nodes', function(t) {
   ])
 
   const expectedRootMap = u('list', {ordered: false, spread: true}, [
-    u('listItem', {loose: true, spread: true}, [
+    u('listItem', {spread: true}, [
       u('paragraph', [
         u('link', {title: null, url: '#alpha'}, [u('text', 'Alpha')])
       ]),
       u('list', {ordered: false, spread: false}, [
-        u('listItem', {loose: false, spread: false}, [
+        u('listItem', {spread: false}, [
           u('paragraph', [
             u('link', {title: null, url: '#bravo'}, [u('text', 'Bravo')])
           ])
