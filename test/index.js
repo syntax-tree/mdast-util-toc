@@ -40,7 +40,7 @@ test('Fixtures', function(t) {
 
       try {
         config = JSON.parse(fs.readFileSync(join(root, name, 'config.json')))
-      } catch (error) {}
+      } catch (_) {}
 
       processor.use(remarkParse, config.remarkParseOptions)
 
