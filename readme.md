@@ -43,14 +43,23 @@ var table = toc(tree)
 Yields:
 
 ```javascript
-{ index: null,
+{
+  index: null,
   endIndex: null,
-  map:
-   { type: 'list',
-     ordered: false,
-     spread: true,
-     children:
-      [ { type: 'listItem', loose: true, spread: true, children: [Array] } ] } }
+  map: {
+    type: 'list',
+    ordered: false,
+    spread: true,
+    children: [
+      {
+        type: 'listItem',
+        loose: true,
+        spread: true,
+        children: [Array]
+      }
+    ]
+  }
+}
 ```
 
 ## API
