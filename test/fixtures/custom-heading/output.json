@@ -74,6 +74,28 @@
                     ]
                   }
                 ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#normal-1",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Normal"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
