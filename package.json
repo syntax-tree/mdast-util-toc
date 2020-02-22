@@ -92,7 +92,12 @@
   "remarkConfig": {
     "plugins": [
       "preset-wooorm",
-      "remark-usage"
+      [
+        "remark-usage",
+        {
+          "heading": "use"
+        }
+      ]
     ]
   }
 }
