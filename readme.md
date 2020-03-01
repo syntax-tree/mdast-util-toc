@@ -170,6 +170,15 @@ Yields in `map`:
 Always use [`hast-util-santize`][sanitize] when transforming to
 [**hast**][hast].
 
+## Related
+
+*   [`github-slugger`](https://github.com/Flet/github-slugger)
+    — Generate a slug just like GitHub does
+*   [`unist-util-visit`](https://github.com/syntax-tree/unist-util-visit)
+    — visit nodes
+*   [`unist-util-visit-parents`][vp]
+    — like `visit`, but with a stack of parents
+
 ## Contribute
 
 See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
