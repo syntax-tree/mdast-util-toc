@@ -176,7 +176,7 @@ Always use [`hast-util-santize`][sanitize] when transforming to
     — Generate a slug just like GitHub does
 *   [`unist-util-visit`](https://github.com/syntax-tree/unist-util-visit)
     — visit nodes
-*   [`unist-util-visit-parents`][vp]
+*   [`unist-util-visit-parents`](https://github.com/syntax-tree/unist-util-visit-parents)
     — like `visit`, but with a stack of parents
 
 ## Contribute
