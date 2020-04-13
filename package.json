@@ -1,6 +1,6 @@
 {
   "name": "mdast-util-toc",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "mdast utility to generate a table of contents from a tree",
   "license": "MIT",
   "keywords": [
