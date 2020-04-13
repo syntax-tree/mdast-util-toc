@@ -53,7 +53,7 @@ toc(tree, {
 })
 
 /*=== usable in unified transform ===*/
-unified().use(() => tree => {
+unified().use(() => (tree) => {
   const table = toc(tree)
 
   if (is<List>(table.map, 'list')) {

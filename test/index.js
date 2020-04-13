@@ -4,16 +4,17 @@ var test = require('tape')
 var unified = require('unified')
 var remarkParse = require('remark-parse')
 var remarkAttr = require('remark-attr')
+var remarkFootnotes = require('remark-footnotes')
 var u = require('unist-builder')
 var toc = require('..')
 
 var join = path.join
 
-test('mdast-util-toc', function(t) {
+test('mdast-util-toc', function (t) {
   t.is(typeof toc, 'function', 'should be a function')
 
   t.throws(
-    function() {
+    function () {
       toc()
     },
     "Cannot read property 'children' of undefined",
@@ -23,14 +24,14 @@ test('mdast-util-toc', function(t) {
   t.end()
 })
 
-test('Fixtures', function(t) {
+test('Fixtures', function (t) {
   var root = join(__dirname, 'fixtures')
 
   fs.readdirSync(root)
-    .filter(function(filepath) {
+    .filter(function (filepath) {
       return filepath.indexOf('.') !== 0
     })
-    .forEach(function(name) {
+    .forEach(function (name) {
       var input = fs.readFileSync(join(root, name, 'input.md'))
       var output = fs.readFileSync(join(root, name, 'output.json'))
       var config = {}
@@ -42,7 +43,11 @@ test('Fixtures', function(t) {
         config = JSON.parse(fs.readFileSync(join(root, name, 'config.json')))
       } catch (_) {}
 
-      processor.use(remarkParse, config.remarkParseOptions)
+      processor.use(remarkParse)
+
+      if (config.useRemarkFootnotes) {
+        processor.use(remarkFootnotes, {inlineNotes: true})
+      }
 
       if (config.useRemarkAttr) {
         processor.use(remarkAttr)
@@ -56,7 +61,7 @@ test('Fixtures', function(t) {
   t.end()
 })
 
-test('processing nodes', function(t) {
+test('processing nodes', function (t) {
   var rootNode = u('root', [
     u('heading', {depth: 1}, [u('text', 'Alpha')]),
     u('heading', {depth: 2}, [u('text', 'Bravo')])

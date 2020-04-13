@@ -10,7 +10,7 @@
 
 # `inline.code()`
 
-# [^a footnote]
+# ^[a footnote]
 
 # footnote reference [^1]
 
