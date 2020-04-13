@@ -174,13 +174,8 @@
                 "url": "#a-footnote",
                 "children": [
                   {
-                    "type": "footnote",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "a footnote"
-                      }
-                    ]
+                    "type": "text",
+                    "value": "a footnote"
                   }
                 ]
               }
@@ -203,11 +198,6 @@
                   {
                     "type": "text",
                     "value": "footnote reference "
-                  },
-                  {
-                    "type": "footnoteReference",
-                    "identifier": "1",
-                    "label": "1"
                   }
                 ]
               }
