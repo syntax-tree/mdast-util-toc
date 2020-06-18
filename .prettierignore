@@ -1,3 +1,5 @@
 coverage/
 mdast-util-toc.js
 mdast-util-toc.min.js
+*.json
+*.md

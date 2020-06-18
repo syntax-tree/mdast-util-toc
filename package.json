@@ -46,21 +46,21 @@
     "nyc": "^15.0.0",
     "prettier": "^2.0.0",
     "remark": "^12.0.0",
-    "remark-attr": "^0.10.0",
+    "remark-attr": "^0.11.0",
     "remark-cli": "^8.0.0",
     "remark-footnotes": "^1.0.0",
     "remark-parse": "^8.0.0",
     "remark-preset-wooorm": "^7.0.0",
     "remark-usage": "^8.0.0",
-    "tape": "^4.0.0",
+    "tape": "^5.0.0",
     "tinyify": "^2.0.0",
     "typescript": "^3.0.0",
     "unified": "^9.0.0",
     "unist-builder": "^2.0.0",
-    "xo": "^0.29.0"
+    "xo": "^0.32.0"
   },
   "scripts": {
-    "format": "remark . -qfo && prettier --write \"**/*.{js,ts}\" && xo --fix",
+    "format": "remark . -qfo && prettier . --write && xo --fix",
     "build-bundle": "browserify . -s mdastUtilTOC > mdast-util-toc.js",
     "build-mangle": "browserify . -s mdastUtilTOC -p tinyify > mdast-util-toc.min.js",
     "build": "npm run build-bundle && npm run build-mangle",
@@ -86,8 +86,11 @@
   "xo": {
     "prettier": true,
     "esnext": false,
+    "rules": {
+      "unicorn/prefer-optional-catch-binding": "off"
+    },
     "ignores": [
-      "types",
+      "types/",
       "mdast-util-toc.js"
     ]
   },
