@@ -3,7 +3,7 @@ var path = require('path')
 var test = require('tape')
 var unified = require('unified')
 var remarkParse = require('remark-parse')
-var remarkAttr = require('remark-attr')
+var remarkGfm = require('remark-gfm')
 var remarkFootnotes = require('remark-footnotes')
 var u = require('unist-builder')
 var toc = require('..')
@@ -43,14 +43,16 @@ test('Fixtures', function (t) {
         config = JSON.parse(fs.readFileSync(join(root, name, 'config.json')))
       } catch (_) {}
 
-      processor.use(remarkParse)
+      processor.use(remarkParse).use(remarkGfm)
 
       if (config.useRemarkFootnotes) {
         processor.use(remarkFootnotes, {inlineNotes: true})
       }
 
       if (config.useRemarkAttr) {
-        processor.use(remarkAttr)
+        // To do: add remark attr back when it’s updated for the new parser.
+        // `processor.use(remarkAttr)`
+        return
       }
 
       actual = toc(processor.parse(input), config)

@@ -71,7 +71,7 @@
                             "type": "image",
                             "title": "Something elsefi",
                             "url": "an-alt.jpeg",
-                            "alt": null
+                            "alt": ""
                           }
                         ]
                       }
