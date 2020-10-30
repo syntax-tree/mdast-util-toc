@@ -125,10 +125,11 @@ An object representing the table of contents.
 ###### Properties
 
 *   `index` (`number?`)
-    — [Index][] of the found table of contents [heading][] in `tree`.
+    — [Index][] of the node right after the  table of contents [heading][].
     `-1` if no heading was found, `null` if no `heading` was given
 *   `endIndex` (`number?`)
-    — [Index][] of the last node after `heading` before the TOC starts.
+    — [Index][] of the first node after `heading` that is not part of its
+    section.
     `-1` if no heading was found, `null` if no `heading` was given,
     same as `index` if there are no nodes between `heading` and the
     first heading in the TOC
