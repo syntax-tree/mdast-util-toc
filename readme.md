@@ -97,6 +97,10 @@ contents.
 
 Whether to compile list-items tightly (`boolean?`, default: `false`).
 
+###### `options.ordered`
+
+Whether to compile list-items as an ordered list (`boolean?`, default: `false`).
+
 ###### `options.prefix`
 
 Add a prefix to links to headings in the table of contents (`string?`,

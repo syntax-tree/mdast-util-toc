@@ -1,0 +1,113 @@
+{
+  "index": null,
+  "endIndex": null,
+  "map": {
+    "type": "list",
+    "ordered": true,
+    "spread": true,
+    "children": [
+      {
+        "type": "listItem",
+        "spread": true,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#something-if",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Something if"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "ordered": true,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#something-else",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Something else"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "listItem",
+        "spread": true,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#something-else-if",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Something else if"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "ordered": true,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "link",
+                        "title": null,
+                        "url": "#something-else-else",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Something else else"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

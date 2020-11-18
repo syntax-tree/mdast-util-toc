@@ -49,6 +49,10 @@ toc(tree, {
 })
 
 toc(tree, {
+  ordered: true
+})
+
+toc(tree, {
   parents: ['root', 'blockquote']
 })
 
