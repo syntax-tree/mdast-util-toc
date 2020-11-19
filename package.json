@@ -88,6 +88,7 @@
     "prettier": true,
     "esnext": false,
     "rules": {
+      "max-params": "off",
       "no-multi-assign": "off",
       "unicorn/explicit-length-check": "off",
       "unicorn/prefer-optional-catch-binding": "off"
