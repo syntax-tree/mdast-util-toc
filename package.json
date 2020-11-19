@@ -36,7 +36,7 @@
     "@types/unist": "^2.0.3",
     "extend": "^3.0.2",
     "github-slugger": "^1.2.1",
-    "mdast-util-to-string": "^1.0.5",
+    "mdast-util-to-string": "^2.0.0",
     "unist-util-is": "^4.0.0",
     "unist-util-visit": "^2.0.0"
   },
