@@ -34,6 +34,13 @@ declare namespace mdastUtilToc {
     tight?: boolean
 
     /**
+     * Whether to compile list-items as an ordered list, otherwise they are unordered.
+     *
+     * @default false
+     */
+    ordered?: boolean
+
+    /**
      * Add a prefix to links to headings in the table of contents.
      * Useful for example when later going from mdast to hast and sanitizing with `hast-util-sanitize`.
      *
