@@ -1,3 +1,1 @@
-'use strict'
-
-module.exports = require('./lib')
+export {toc} from './lib/index.js'

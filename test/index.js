@@ -1,20 +1,20 @@
-var fs = require('fs')
-var path = require('path')
-var test = require('tape')
-var unified = require('unified')
-var remarkParse = require('remark-parse')
-var remarkGfm = require('remark-gfm')
-var remarkFootnotes = require('remark-footnotes')
-var u = require('unist-builder')
-var toc = require('..')
+import fs from 'fs'
+import path from 'path'
+import test from 'tape'
+import unified from 'unified'
+import remarkParse from 'remark-parse'
+import remarkGfm from 'remark-gfm'
+import remarkFootnotes from 'remark-footnotes'
+import {u} from 'unist-builder'
+import {toc} from '../index.js'
 
-var join = path.join
+const join = path.join
 
-test('mdast-util-toc', function (t) {
+test('mdast-util-toc', (t) => {
   t.is(typeof toc, 'function', 'should be a function')
 
   t.throws(
-    function () {
+    () => {
       toc()
     },
     "Cannot read property 'children' of undefined",
@@ -24,31 +24,24 @@ test('mdast-util-toc', function (t) {
   t.end()
 })
 
-test('Fixtures', function (t) {
-  var root = join(__dirname, 'fixtures')
-  var files = fs.readdirSync(root)
-  var index = -1
-  var name
-  var input
-  var expected
-  var actual
-  var config
-  var processor
+test('Fixtures', (t) => {
+  const root = join('test', 'fixtures')
+  const files = fs.readdirSync(root)
+  let index = -1
 
   while (++index < files.length) {
-    name = files[index]
+    const name = files[index]
 
     if (name.indexOf('.') === 0) continue
 
-    input = fs.readFileSync(join(root, name, 'input.md'))
-    expected = JSON.parse(fs.readFileSync(join(root, name, 'output.json')))
-    processor = unified().use(remarkParse).use(remarkGfm)
+    const input = fs.readFileSync(join(root, name, 'input.md'))
+    let config = {}
 
     try {
       config = JSON.parse(fs.readFileSync(join(root, name, 'config.json')))
-    } catch (_) {
-      config = {}
-    }
+    } catch {}
+
+    const processor = unified().use(remarkParse).use(remarkGfm)
 
     if (config.useRemarkFootnotes) {
       processor.use(remarkFootnotes, {inlineNotes: true})
@@ -60,7 +53,10 @@ test('Fixtures', function (t) {
       continue
     }
 
-    actual = toc(processor.parse(input), config)
+    const actual = toc(processor.parse(input), config)
+    const expected = JSON.parse(
+      fs.readFileSync(join(root, name, 'output.json'))
+    )
 
     t.deepEqual(actual, expected, name)
   }
@@ -68,15 +64,15 @@ test('Fixtures', function (t) {
   t.end()
 })
 
-test('processing nodes', function (t) {
-  var rootNode = u('root', [
+test('processing nodes', (t) => {
+  const rootNode = u('root', [
     u('heading', {depth: 1}, [u('text', 'Alpha')]),
     u('heading', {depth: 2}, [u('text', 'Bravo')])
   ])
 
-  var parentNode = u('parent', rootNode.children)
+  const parentNode = u('parent', rootNode.children)
 
-  var blockquoteNode = u('root', [
+  const blockquoteNode = u('root', [
     u('heading', {depth: 1}, [u('text', 'Charlie')]),
     u('heading', {depth: 2}, [u('text', 'Delta')]),
     u('blockquote', rootNode.children)
