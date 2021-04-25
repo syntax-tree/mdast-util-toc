@@ -26,39 +26,44 @@ test('mdast-util-toc', function (t) {
 
 test('Fixtures', function (t) {
   var root = join(__dirname, 'fixtures')
+  var files = fs.readdirSync(root)
+  var index = -1
+  var name
+  var input
+  var expected
+  var actual
+  var config
+  var processor
 
-  fs.readdirSync(root)
-    .filter(function (filepath) {
-      return filepath.indexOf('.') !== 0
-    })
-    .forEach(function (name) {
-      var input = fs.readFileSync(join(root, name, 'input.md'))
-      var output = fs.readFileSync(join(root, name, 'output.json'))
-      var config = {}
-      var expected = JSON.parse(output)
-      var actual
-      var processor = unified()
+  while (++index < files.length) {
+    name = files[index]
 
-      try {
-        config = JSON.parse(fs.readFileSync(join(root, name, 'config.json')))
-      } catch (_) {}
+    if (name.indexOf('.') === 0) continue
 
-      processor.use(remarkParse).use(remarkGfm)
+    input = fs.readFileSync(join(root, name, 'input.md'))
+    expected = JSON.parse(fs.readFileSync(join(root, name, 'output.json')))
+    processor = unified().use(remarkParse).use(remarkGfm)
 
-      if (config.useRemarkFootnotes) {
-        processor.use(remarkFootnotes, {inlineNotes: true})
-      }
+    try {
+      config = JSON.parse(fs.readFileSync(join(root, name, 'config.json')))
+    } catch (_) {
+      config = {}
+    }
 
-      if (config.useRemarkAttr) {
-        // To do: add remark attr back when it’s updated for the new parser.
-        // `processor.use(remarkAttr)`
-        return
-      }
+    if (config.useRemarkFootnotes) {
+      processor.use(remarkFootnotes, {inlineNotes: true})
+    }
 
-      actual = toc(processor.parse(input), config)
+    if (config.useRemarkAttr) {
+      // To do: add remark attr back when it’s updated for the new parser.
+      // `processor.use(remarkAttr)`
+      continue
+    }
 
-      t.deepEqual(actual, expected, name)
-    })
+    actual = toc(processor.parse(input), config)
+
+    t.deepEqual(actual, expected, name)
+  }
 
   t.end()
 })
