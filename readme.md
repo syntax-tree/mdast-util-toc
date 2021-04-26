@@ -12,6 +12,9 @@
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -23,21 +26,21 @@ npm install mdast-util-toc
 Dependencies:
 
 ```javascript
-var u = require('unist-builder')
-var toc = require('mdast-util-toc')
+import {u} from 'unist-builder'
+import {toc} from 'mdast-util-toc'
 ```
 
-Given a mdast tree:
+Now running:
 
 ```javascript
-var tree = u('root', [
+const tree = u('root', [
   u('heading', {depth: 1}, [u('text', 'Alpha')]),
   u('heading', {depth: 2}, [u('text', 'Bravo')]),
   u('heading', {depth: 3}, [u('text', 'Charlie')]),
   u('heading', {depth: 2}, [u('text', 'Delta')])
 ])
 
-var table = toc(tree)
+const table = toc(tree)
 ```
 
 Yields:
@@ -56,6 +59,9 @@ Yields:
 ```
 
 ## API
+
+This package exports the following identifiers: `toc`.
+There is no default export.
 
 ### `toc(tree[, options])`
 
