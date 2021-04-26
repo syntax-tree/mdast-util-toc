@@ -215,7 +215,7 @@
               {
                 "type": "link",
                 "title": null,
-                "url": "#image",
+                "url": "#",
                 "children": [
                   {
                     "type": "image",
@@ -239,14 +239,14 @@
               {
                 "type": "link",
                 "title": null,
-                "url": "#image-reference",
+                "url": "#-1",
                 "children": [
                   {
                     "type": "imageReference",
+                    "alt": "image reference",
                     "identifier": "image",
                     "label": "image",
-                    "referenceType": "full",
-                    "alt": "image reference"
+                    "referenceType": "full"
                   }
                 ]
               }
@@ -286,14 +286,14 @@
               {
                 "type": "link",
                 "title": null,
-                "url": "#link-reference",
+                "url": "#-2",
                 "children": [
                   {
                     "type": "imageReference",
+                    "alt": "link reference",
                     "identifier": "link",
                     "label": "link",
-                    "referenceType": "full",
-                    "alt": "link reference"
+                    "referenceType": "full"
                   }
                 ]
               }

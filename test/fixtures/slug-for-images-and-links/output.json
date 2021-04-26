@@ -41,7 +41,7 @@
                       {
                         "type": "link",
                         "title": null,
-                        "url": "#something-else",
+                        "url": "#",
                         "children": [
                           {
                             "type": "image",
@@ -65,7 +65,7 @@
                       {
                         "type": "link",
                         "title": null,
-                        "url": "#something-elsefi",
+                        "url": "#-1",
                         "children": [
                           {
                             "type": "image",
@@ -93,7 +93,7 @@
               {
                 "type": "link",
                 "title": null,
-                "url": "#another-title",
+                "url": "#-2",
                 "children": [
                   {
                     "type": "image",

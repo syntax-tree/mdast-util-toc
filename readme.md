@@ -67,9 +67,8 @@ There is no default export.
 
 Generate a Table of Contents from a [tree][].
 
-Looks for the first [heading][] matching `options.heading` (case insensitive,
-supports alt/title attributes for links and images too), and returns a table
-of contents ([list][]) for all following headings.
+Looks for the first [heading][] matching `options.heading` (case insensitive),
+and returns a table of contents ([list][]) for all following headings.
 If no `heading` is specified, creates a table of contents for all headings in
 `tree`.
 `tree` is not changed.

@@ -1,5 +1,52 @@
 {
   "index": null,
   "endIndex": null,
-  "map": null
+  "map": {
+    "type": "list",
+    "ordered": false,
+    "spread": false,
+    "children": [
+      {
+        "type": "listItem",
+        "spread": false,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "listItem",
+        "spread": false,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#-1",
+                "children": [
+                  {
+                    "type": "image",
+                    "title": null,
+                    "url": "an-image.svg",
+                    "alt": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
