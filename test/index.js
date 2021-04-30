@@ -1,3 +1,14 @@
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('../index.js').Options} Options
+ *
+ * @typedef TestConfig
+ * @property {boolean} [useRemarkFootnotes]
+ * @property {boolean} [useCustomHProperty]
+ *
+ * @typedef {Options & TestConfig} Config
+ */
+
 import fs from 'fs'
 import path from 'path'
 import test from 'tape'
@@ -5,6 +16,7 @@ import unified from 'unified'
 import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
 import remarkFootnotes from 'remark-footnotes'
+import {visit} from 'unist-util-visit'
 import {u} from 'unist-builder'
 import {toc} from '../index.js'
 
@@ -15,9 +27,10 @@ test('mdast-util-toc', (t) => {
 
   t.throws(
     () => {
+      // @ts-ignore runtime.
       toc()
     },
-    "Cannot read property 'children' of undefined",
+    /Cannot read property 'children' of undefined/,
     'should fail without node'
   )
 
@@ -35,27 +48,34 @@ test('Fixtures', (t) => {
     if (name.indexOf('.') === 0) continue
 
     const input = fs.readFileSync(join(root, name, 'input.md'))
+    /** @type {Config} */
     let config = {}
 
     try {
-      config = JSON.parse(fs.readFileSync(join(root, name, 'config.json')))
+      config = JSON.parse(
+        String(fs.readFileSync(join(root, name, 'config.json')))
+      )
     } catch {}
 
     const processor = unified().use(remarkParse).use(remarkGfm)
+    const {useRemarkFootnotes, useCustomHProperty, ...options} = config
 
-    if (config.useRemarkFootnotes) {
+    if (useRemarkFootnotes) {
       processor.use(remarkFootnotes, {inlineNotes: true})
     }
 
-    if (config.useRemarkAttr) {
-      // To do: add remark attr back when it’s updated for the new parser.
-      // `processor.use(remarkAttr)`
-      continue
+    if (useCustomHProperty) {
+      processor.use(() => (tree) => {
+        visit(tree, 'heading', (heading) => {
+          heading.data = {hProperties: {id: 'b'}}
+        })
+      })
     }
 
-    const actual = toc(processor.parse(input), config)
+    const actual = toc(processor.runSync(processor.parse(input)), options)
+    /** @type {Node} */
     const expected = JSON.parse(
-      fs.readFileSync(join(root, name, 'output.json'))
+      String(fs.readFileSync(join(root, name, 'output.json')))
     )
 
     t.deepEqual(actual, expected, name)
