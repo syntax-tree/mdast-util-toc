@@ -1,5 +1,5 @@
 // remark-usage-ignore-next
-import {inspect} from 'util'
+import {inspect} from 'node:util'
 
 // Dependencies:
 /** @typedef {import('mdast').Root} Root */

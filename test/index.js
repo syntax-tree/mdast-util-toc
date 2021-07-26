@@ -11,8 +11,8 @@
  * @typedef {Options & TestConfig} Config
  */
 
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import test from 'tape'
 import {unified} from 'unified'
 import remarkParse from 'remark-parse'
