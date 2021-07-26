@@ -1,5 +1,7 @@
 /**
- * @typedef {import('unist').Node} Node
+ * @typedef {import('mdast').Root} Root
+ * @typedef {import('mdast').Blockquote} Blockquote
+ * @typedef {import('mdast').List} List
  * @typedef {import('../index.js').Options} Options
  *
  * @typedef TestConfig
@@ -72,8 +74,9 @@ test('Fixtures', (t) => {
       })
     }
 
-    const actual = toc(processor.runSync(processor.parse(input)), options)
-    /** @type {Node} */
+    const tree = /** @type {Root} */ (processor.runSync(processor.parse(input)))
+    const actual = toc(tree, options)
+    /** @type {Root} */
     const expected = JSON.parse(
       String(fs.readFileSync(join(root, name, 'output.json')))
     )
@@ -85,19 +88,26 @@ test('Fixtures', (t) => {
 })
 
 test('processing nodes', (t) => {
-  const rootNode = u('root', [
-    u('heading', {depth: 1}, [u('text', 'Alpha')]),
-    u('heading', {depth: 2}, [u('text', 'Bravo')])
-  ])
+  const rootNode = /** @type {Root} */ (
+    u('root', [
+      u('heading', {depth: 1}, [u('text', 'Alpha')]),
+      u('heading', {depth: 2}, [u('text', 'Bravo')])
+    ])
+  )
 
-  const parentNode = u('parent', rootNode.children)
-
-  const blockquoteNode = u('root', [
-    u('heading', {depth: 1}, [u('text', 'Charlie')]),
-    u('heading', {depth: 2}, [u('text', 'Delta')]),
+  const parentNode = /** @type {Blockquote} */ (
     u('blockquote', rootNode.children)
-  ])
+  )
 
+  const blockquoteNode = /** @type {Root} */ (
+    u('root', [
+      u('heading', {depth: 1}, [u('text', 'Charlie')]),
+      u('heading', {depth: 2}, [u('text', 'Delta')]),
+      u('blockquote', rootNode.children)
+    ])
+  )
+
+  /** @type {List} */
   const expectedRootMap = u('list', {ordered: false, spread: true}, [
     u('listItem', {spread: true}, [
       u('paragraph', [

@@ -26,6 +26,7 @@ npm install mdast-util-toc
 Dependencies:
 
 ```javascript
+/** @typedef {import('mdast').Root} Root */
 import {u} from 'unist-builder'
 import {toc} from 'mdast-util-toc'
 ```
@@ -33,12 +34,14 @@ import {toc} from 'mdast-util-toc'
 Now running:
 
 ```javascript
-const tree = u('root', [
-  u('heading', {depth: 1}, [u('text', 'Alpha')]),
-  u('heading', {depth: 2}, [u('text', 'Bravo')]),
-  u('heading', {depth: 3}, [u('text', 'Charlie')]),
-  u('heading', {depth: 2}, [u('text', 'Delta')])
-])
+const tree = /** @type {Root} */ (
+  u('root', [
+    u('heading', {depth: 1}, [u('text', 'Alpha')]),
+    u('heading', {depth: 2}, [u('text', 'Bravo')]),
+    u('heading', {depth: 3}, [u('text', 'Charlie')]),
+    u('heading', {depth: 2}, [u('text', 'Delta')])
+  ])
+)
 
 const table = toc(tree)
 ```

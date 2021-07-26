@@ -38,7 +38,6 @@
     "@types/extend": "^3.0.0",
     "@types/github-slugger": "^1.0.0",
     "@types/mdast": "^3.0.0",
-    "@types/unist": "^2.0.0",
     "extend": "^3.0.0",
     "github-slugger": "^1.0.0",
     "mdast-util-to-string": "^3.1.0",
