@@ -68,7 +68,8 @@ test('Fixtures', (t) => {
 
     if (useCustomHProperty) {
       processor.use(() => (tree) => {
-        visit(tree, 'heading', (heading) => {
+        const node = /** @type {Root} */ (tree)
+        visit(node, 'heading', (heading) => {
           heading.data = {hProperties: {id: 'b'}}
         })
       })
