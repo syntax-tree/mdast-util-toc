@@ -5,7 +5,6 @@
  * @typedef {import('../index.js').Options} Options
  *
  * @typedef TestConfig
- * @property {boolean} [useRemarkFootnotes]
  * @property {boolean} [useCustomHProperty]
  *
  * @typedef {Options & TestConfig} Config
@@ -17,7 +16,6 @@ import test from 'tape'
 import {unified} from 'unified'
 import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
-import remarkFootnotes from 'remark-footnotes'
 import {visit} from 'unist-util-visit'
 import {u} from 'unist-builder'
 import {toc} from '../index.js'
@@ -32,7 +30,7 @@ test('mdast-util-toc', (t) => {
       // @ts-expect-error runtime.
       toc()
     },
-    /Cannot read property 'children' of undefined/,
+    /Cannot read propert/,
     'should fail without node'
   )
 
@@ -60,11 +58,7 @@ test('Fixtures', (t) => {
     } catch {}
 
     const processor = unified().use(remarkParse).use(remarkGfm)
-    const {useRemarkFootnotes, useCustomHProperty, ...options} = config
-
-    if (useRemarkFootnotes) {
-      processor.use(remarkFootnotes, {inlineNotes: true})
-    }
+    const {useCustomHProperty, ...options} = config
 
     if (useCustomHProperty) {
       processor.use(() => (tree) => {

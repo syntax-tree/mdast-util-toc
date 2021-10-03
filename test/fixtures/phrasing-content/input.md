@@ -10,8 +10,6 @@
 
 # `inline.code()`
 
-# ^[a footnote]
-
 # footnote reference [^1]
 
 # ![image](image.png)

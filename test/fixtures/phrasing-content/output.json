@@ -171,28 +171,6 @@
               {
                 "type": "link",
                 "title": null,
-                "url": "#a-footnote",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "a footnote"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "type": "listItem",
-        "spread": false,
-        "children": [
-          {
-            "type": "paragraph",
-            "children": [
-              {
-                "type": "link",
-                "title": null,
                 "url": "#footnote-reference-",
                 "children": [
                   {
