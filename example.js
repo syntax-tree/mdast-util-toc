@@ -2,7 +2,10 @@
 import {inspect} from 'node:util'
 
 // Dependencies:
-/** @typedef {import('mdast').Root} Root */
+/**
+ * @typedef {import('mdast').Root} Root
+ */
+
 import {u} from 'unist-builder'
 import {toc} from './index.js'
 

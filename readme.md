@@ -8,17 +8,56 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**mdast**][mdast] utility to generate table of contents.
+[mdast][] utility to generate a table of contents.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`toc(node[, options])`](#tocnode-options)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a utility that generates a table of contents from a document.
+
+## When should I use this?
+
+This utility is useful to generate a section so users can more easily navigate
+through a document.
+
+This package is wrapped in [`remark-toc`][remark-toc] for ease of use with
+[remark][], where it also injects the table of contents into the document.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 
 ```sh
 npm install mdast-util-toc
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {toc} from 'https://esm.sh/mdast-util-toc@6'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {toc} from 'https://esm.sh/mdast-util-toc@6?bundle'
+</script>
 ```
 
 ## Use
@@ -26,7 +65,10 @@ npm install mdast-util-toc
 Dependencies:
 
 ```javascript
-/** @typedef {import('mdast').Root} Root */
+/**
+ * @typedef {import('mdast').Root} Root
+ */
+
 import {u} from 'unist-builder'
 import {toc} from 'mdast-util-toc'
 ```
@@ -63,24 +105,26 @@ Yields:
 
 ## API
 
-This package exports the following identifiers: `toc`.
+This package exports the identifier `toc`.
 There is no default export.
 
-### `toc(tree[, options])`
+### `toc(node[, options])`
 
-Generate a Table of Contents from a [tree][].
+Generate a table of contents from [`node`][node].
 
-Looks for the first [heading][] matching `options.heading` (case insensitive),
-and returns a table of contents ([list][]) for all following headings.
+Looks for the first heading matching `options.heading` (case insensitive) and
+returns a table of contents (a list) for all following headings.
 If no `heading` is specified, creates a table of contents for all headings in
 `tree`.
 `tree` is not changed.
 
-Links to headings are based on GitHub’s style.
-Only top-level headings (those not in [blockquote][]s or [list][]s), are used.
-This default behavior can be changed by passing [`parents`][parents].
+Links in the list to headings are based on GitHub’s style.
+Only top-level headings (those not in blockquotes or lists), are used.
+This default behavior can be changed by passing [`options.parents`][parents].
 
 ##### `options`
+
+Configuration (optional).
 
 ###### `options.heading`
 
@@ -103,28 +147,28 @@ contents.
 
 ###### `options.tight`
 
-Whether to compile list-items tightly (`boolean?`, default: `false`).
+Whether to compile list items tightly (`boolean?`, default: `false`).
 
 ###### `options.ordered`
 
-Whether to compile list-items as an ordered list (`boolean?`, default: `false`).
+Whether to compile list items as an ordered list (`boolean?`, default: `false`).
 
 ###### `options.prefix`
 
-Add a prefix to links to headings in the table of contents (`string?`,
-default: `null`).
+Add a prefix to links to headings in the table of contents (`string?`, default:
+`null`).
 Useful for example when later going from [mdast][] to [hast][] and sanitizing
 with [`hast-util-sanitize`][sanitize].
 
 ###### `options.parents`
 
-Allows headings to be children of certain node [type][]s (default: the to `toc`
-given `tree`, to only allow top-level headings).
-Internally, uses [unist-util-is][is] to check, so `parents` can be any
-[`is`-compatible][is] test.
+Allow headings to be children of certain node types (default: the to `toc` given
+`node`, to only allow top-level headings).
+Internally, uses [`unist-util-is`][is], so `parents` can be any
+`is`-compatible test.
 
-For example, this would allow headings under either `root` or `blockquote` to be
-used:
+For example, the following code would allow headings under either `root` or
+`blockquote` to be used:
 
 ```js
 toc(tree, {parents: ['root', 'blockquote']})
@@ -132,29 +176,37 @@ toc(tree, {parents: ['root', 'blockquote']})
 
 ##### Returns
 
-An object representing the table of contents.
-
-###### Properties
+An object representing the table of contents:
 
 *   `index` (`number?`)
-    — [Index][] of the node right after the  table of contents [heading][].
+    — index of the node right after the  table of contents [heading][].
     `-1` if no heading was found, `null` if no `heading` was given
 *   `endIndex` (`number?`)
-    — [Index][] of the first node after `heading` that is not part of its
-    section.
-    `-1` if no heading was found, `null` if no `heading` was given,
-    same as `index` if there are no nodes between `heading` and the
-    first heading in the TOC
+    — index of the first node after `heading` that is not part of its section.
+    `-1` if no heading was found, `null` if no `heading` was given, same as
+    `index` if there are no nodes between `heading` and the first heading in the
+    table of contents
 *   `map` (`Node?`)
-    — [List][] representing the generated table of contents.
-    `null` if no table of contents could be created, either because
-    no heading was found or because no following headings were found
+    — list representing the generated table of contents.
+    `null` if no table of contents could be created, either because no heading
+    was found or because no following headings were found
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports the types `Options` and `Result`.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
 
-Use of `mdast-util-toc` does not involve [**hast**][hast], user content, or
-change the tree, so there are no openings for [cross-site scripting (XSS)][xss]
-attacks.
+Use of `mdast-util-toc` does not involve [hast][], user content, or change the
+tree, so there are no openings for [cross-site scripting (XSS)][xss] attacks.
 
 Injecting `map` into the syntax tree may open you up to XSS attacks as existing
 nodes are copied into the table of contents.
@@ -180,13 +232,12 @@ Yields in `map`:
     -   [Charlie](#charlie)
 ```
 
-Always use [`hast-util-santize`][sanitize] when transforming to
-[**hast**][hast].
+Always use [`hast-util-santize`][sanitize] when transforming to [hast][].
 
 ## Related
 
 *   [`github-slugger`](https://github.com/Flet/github-slugger)
-    — Generate a slug just like GitHub does
+    — generate a slug just like GitHub does
 *   [`unist-util-visit`](https://github.com/syntax-tree/unist-util-visit)
     — visit nodes
 *   [`unist-util-visit-parents`](https://github.com/syntax-tree/unist-util-visit-parents)
@@ -194,8 +245,8 @@ Always use [`hast-util-santize`][sanitize] when transforming to
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`syntax-tree/.github`][health] for
+ways to get started.
 See [`support.md`][support] for ways to get help.
 
 This project has a [code of conduct][coc].
@@ -236,15 +287,23 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
 [license]: license
 
 [author]: https://barrythepenguin.github.io
 
-[contributing]: https://github.com/syntax-tree/.github/blob/HEAD/contributing.md
+[health]: https://github.com/syntax-tree/.github
 
-[support]: https://github.com/syntax-tree/.github/blob/HEAD/support.md
+[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
 
-[coc]: https://github.com/syntax-tree/.github/blob/HEAD/code-of-conduct.md
+[support]: https://github.com/syntax-tree/.github/blob/main/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
 
 [mdast]: https://github.com/syntax-tree/mdast
 
@@ -254,18 +313,14 @@ abide by its terms.
 
 [is]: https://github.com/syntax-tree/unist-util-is
 
-[tree]: https://github.com/syntax-tree/unist#tree
-
-[type]: https://github.com/syntax-tree/unist#type
-
-[index]: https://github.com/syntax-tree/unist#index
-
 [heading]: https://github.com/syntax-tree/mdast#heading
 
-[list]: https://github.com/syntax-tree/mdast#list
-
-[blockquote]: https://github.com/syntax-tree/mdast#blockquote
+[node]: https://github.com/syntax-tree/mdast#node
 
 [parents]: #optionsparents
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[remark]: https://github.com/remarkjs/remark
+
+[remark-toc]: https://github.com/remarkjs/remark-toc
