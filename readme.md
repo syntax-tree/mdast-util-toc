@@ -71,21 +71,22 @@ Dependencies:
  * @typedef {import('mdast').Root} Root
  */
 
-import {u} from 'unist-builder'
 import {toc} from 'mdast-util-toc'
 ```
 
 Now running:
 
 ```javascript
-const tree = /** @type {Root} */ (
-  u('root', [
-    u('heading', {depth: 1}, [u('text', 'Alpha')]),
-    u('heading', {depth: 2}, [u('text', 'Bravo')]),
-    u('heading', {depth: 3}, [u('text', 'Charlie')]),
-    u('heading', {depth: 2}, [u('text', 'Delta')])
-  ])
-)
+/** @type {Root} */
+const tree = {
+  type: 'root',
+  children: [
+    {type: 'heading', depth: 1, children: [{type: 'text', value: 'Alpha'}]},
+    {type: 'heading', depth: 2, children: [{type: 'text', value: 'Bravo'}]},
+    {type: 'heading', depth: 3, children: [{type: 'text', value: 'Charlie'}]},
+    {type: 'heading', depth: 2, children: [{type: 'text', value: 'Delta'}]}
+  ]
+}
 
 const table = toc(tree)
 ```
