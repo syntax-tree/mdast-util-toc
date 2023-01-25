@@ -19,9 +19,14 @@ import {gfmFromMarkdown} from 'mdast-util-gfm'
 import {gfm} from 'micromark-extension-gfm'
 import {visit} from 'unist-util-visit'
 import {toc} from '../index.js'
+import * as mod from '../index.js'
 
-test('mdast-util-toc', () => {
-  assert.equal(typeof toc, 'function', 'should be a function')
+test('toc', () => {
+  assert.deepEqual(
+    Object.keys(mod).sort(),
+    ['toc'],
+    'should expose the public api'
+  )
 
   assert.throws(
     () => {
