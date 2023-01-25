@@ -1,6 +1,7 @@
 /**
  * @typedef {import('mdast').Root} Root
  * @typedef {import('mdast').Blockquote} Blockquote
+ * @typedef {import('mdast').BlockContent} BlockContent
  * @typedef {import('mdast').List} List
  * @typedef {import('../index.js').Options} Options
  *
@@ -10,22 +11,19 @@
  * @typedef {Options & TestConfig} Config
  */
 
-import fs from 'node:fs'
-import path from 'node:path'
-import test from 'tape'
-import {unified} from 'unified'
-import remarkParse from 'remark-parse'
-import remarkGfm from 'remark-gfm'
+import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
+import test from 'node:test'
+import {fromMarkdown} from 'mdast-util-from-markdown'
+import {gfmFromMarkdown} from 'mdast-util-gfm'
+import {gfm} from 'micromark-extension-gfm'
 import {visit} from 'unist-util-visit'
-import {u} from 'unist-builder'
 import {toc} from '../index.js'
 
-const join = path.join
+test('mdast-util-toc', () => {
+  assert.equal(typeof toc, 'function', 'should be a function')
 
-test('mdast-util-toc', (t) => {
-  t.is(typeof toc, 'function', 'should be a function')
-
-  t.throws(
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       toc()
@@ -33,13 +31,11 @@ test('mdast-util-toc', (t) => {
     /Cannot read propert/,
     'should fail without node'
   )
-
-  t.end()
 })
 
-test('Fixtures', (t) => {
-  const root = join('test', 'fixtures')
-  const files = fs.readdirSync(root)
+test('Fixtures', async () => {
+  const root = new URL('fixtures/', import.meta.url)
+  const files = await fs.readdir(root)
   let index = -1
 
   while (++index < files.length) {
@@ -47,79 +43,99 @@ test('Fixtures', (t) => {
 
     if (name.indexOf('.') === 0) continue
 
-    const input = fs.readFileSync(join(root, name, 'input.md'))
+    const input = await fs.readFile(new URL(name + '/input.md', root))
     /** @type {Config} */
     let config = {}
 
     try {
       config = JSON.parse(
-        String(fs.readFileSync(join(root, name, 'config.json')))
+        String(await fs.readFile(new URL(name + '/config.json', root)))
       )
     } catch {}
 
-    const processor = unified().use(remarkParse).use(remarkGfm)
     const {useCustomHProperty, ...options} = config
 
+    const tree = fromMarkdown(input, {
+      mdastExtensions: [gfmFromMarkdown()],
+      extensions: [gfm()]
+    })
+
     if (useCustomHProperty) {
-      processor.use(() => (tree) => {
-        const node = /** @type {Root} */ (tree)
-        visit(node, 'heading', (heading) => {
-          heading.data = {hProperties: {id: 'b'}}
-        })
+      visit(tree, 'heading', (heading) => {
+        heading.data = {hProperties: {id: 'b'}}
       })
     }
 
-    const tree = /** @type {Root} */ (processor.runSync(processor.parse(input)))
     const actual = toc(tree, options)
+
     /** @type {Root} */
     const expected = JSON.parse(
-      String(fs.readFileSync(join(root, name, 'output.json')))
+      String(await fs.readFile(new URL(name + '/output.json', root)))
     )
 
-    t.deepEqual(actual, expected, name)
+    assert.deepEqual(actual, expected, name)
   }
-
-  t.end()
 })
 
-test('processing nodes', (t) => {
-  const rootNode = /** @type {Root} */ (
-    u('root', [
-      u('heading', {depth: 1}, [u('text', 'Alpha')]),
-      u('heading', {depth: 2}, [u('text', 'Bravo')])
-    ])
-  )
-
-  const parentNode = /** @type {Blockquote} */ (
-    u('blockquote', rootNode.children)
-  )
-
-  const blockquoteNode = /** @type {Root} */ (
-    u('root', [
-      u('heading', {depth: 1}, [u('text', 'Charlie')]),
-      u('heading', {depth: 2}, [u('text', 'Delta')]),
-      u('blockquote', rootNode.children)
-    ])
-  )
+test('processing nodes', () => {
+  /** @type {Array<BlockContent>} */
+  const fragment = [
+    {type: 'heading', depth: 1, children: [{type: 'text', value: 'Alpha'}]},
+    {type: 'heading', depth: 2, children: [{type: 'text', value: 'Bravo'}]}
+  ]
 
   /** @type {List} */
-  const expectedRootMap = u('list', {ordered: false, spread: true}, [
-    u('listItem', {spread: true}, [
-      u('paragraph', [
-        u('link', {title: null, url: '#alpha'}, [u('text', 'Alpha')])
-      ]),
-      u('list', {ordered: false, spread: false}, [
-        u('listItem', {spread: false}, [
-          u('paragraph', [
-            u('link', {title: null, url: '#bravo'}, [u('text', 'Bravo')])
-          ])
-        ])
-      ])
-    ])
-  ])
+  const expectedRootMap = {
+    type: 'list',
+    ordered: false,
+    spread: true,
+    children: [
+      {
+        type: 'listItem',
+        spread: true,
+        children: [
+          {
+            type: 'paragraph',
+            children: [
+              {
+                type: 'link',
+                title: null,
+                url: '#alpha',
+                children: [{type: 'text', value: 'Alpha'}]
+              }
+            ]
+          },
+          {
+            type: 'list',
+            ordered: false,
+            spread: false,
+            children: [
+              {
+                type: 'listItem',
+                spread: false,
+                children: [
+                  {
+                    type: 'paragraph',
+                    children: [
+                      {
+                        type: 'link',
+                        title: null,
+                        url: '#bravo',
+                        children: [{type: 'text', value: 'Bravo'}]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 
-  t.deepEqual(
-    toc(rootNode),
+  assert.deepEqual(
+    toc({type: 'root', children: fragment}),
     {
       index: null,
       endIndex: null,
@@ -128,8 +144,8 @@ test('processing nodes', (t) => {
     'can process root nodes'
   )
 
-  t.deepEqual(
-    toc(parentNode),
+  assert.deepEqual(
+    toc({type: 'blockquote', children: fragment}),
     {
       index: null,
       endIndex: null,
@@ -138,8 +154,26 @@ test('processing nodes', (t) => {
     'can process non-root nodes'
   )
 
-  t.deepEqual(
-    toc(blockquoteNode, {parents: 'blockquote'}),
+  assert.deepEqual(
+    toc(
+      {
+        type: 'root',
+        children: [
+          {
+            type: 'heading',
+            depth: 1,
+            children: [{type: 'text', value: 'Charlie'}]
+          },
+          {
+            type: 'heading',
+            depth: 2,
+            children: [{type: 'text', value: 'Delta'}]
+          },
+          {type: 'blockquote', children: fragment}
+        ]
+      },
+      {parents: 'blockquote'}
+    ),
     {
       index: null,
       endIndex: null,
@@ -147,6 +181,4 @@ test('processing nodes', (t) => {
     },
     'can process custom parent nodes'
   )
-
-  t.end()
 })
