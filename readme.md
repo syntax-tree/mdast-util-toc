@@ -17,7 +17,9 @@
 *   [Install](#install)
 *   [Use](#use)
 *   [API](#api)
-    *   [`toc(node[, options])`](#tocnode-options)
+    *   [`toc(tree[, options])`](#toctree-options)
+    *   [`Options`](#options)
+    *   [`Result`](#result)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
@@ -40,7 +42,7 @@ This package is wrapped in [`remark-toc`][remark-toc] for ease of use with
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+In Node.js (version 14.14+ and 16.0+), install with [npm][]:
 
 ```sh
 npm install mdast-util-toc
@@ -105,12 +107,12 @@ Yields:
 
 ## API
 
-This package exports the identifier `toc`.
+This package exports the identifier [`toc`][api-toc].
 There is no default export.
 
-### `toc(node[, options])`
+### `toc(tree[, options])`
 
-Generate a table of contents from [`node`][node].
+Generate a table of contents from `tree`.
 
 Looks for the first heading matching `options.heading` (case insensitive) and
 returns a table of contents (a list) for all following headings.
@@ -120,87 +122,77 @@ If no `heading` is specified, creates a table of contents for all headings in
 
 Links in the list to headings are based on GitHub’s style.
 Only top-level headings (those not in blockquotes or lists), are used.
-This default behavior can be changed by passing [`options.parents`][parents].
+This default behavior can be changed by passing `options.parents`.
 
-##### `options`
+###### Parameters
 
-Configuration (optional).
+*   `tree` ([`Node`][node])
+    — tree to search and generate from
+*   `options` ([`Options`][api-options], optional)
+    — configuration
 
-###### `options.heading`
+###### Returns
 
-[Heading][] to look for (`string`), wrapped in `new RegExp('^(' + value + ')$',
-'i')`.
+Results ([`Result`][api-result]).
 
-###### `options.maxDepth`
+### `Options`
 
-Maximum heading depth to include in the table of contents (`number`, default:
-`6`),
-This is inclusive: when set to `3`, level three headings are included (those
-with three hashes, `###`).
+Configuration (TypeScript type).
 
-###### `options.skip`
+###### Fields
 
-Headings to skip (`string`, optional), wrapped in
-`new RegExp('^(' + value + ')$', 'i')`.
-Any heading matching this expression will not be present in the table of
-contents.
+*   `heading` (`string`, optional)
+    — heading to look for, wrapped in `new RegExp('^(' + value + ')$', 'i')`
+*   `maxDepth` (`number`, default: `6`)
+    — maximum heading depth to include in the table of contents.
+    This is inclusive: when set to `3`, level three headings are included
+    (those with three hashes, `###`)
+*   `skip` (`string`, optional)
+    — headings to skip, wrapped in `new RegExp('^(' + value + ')$', 'i')`.
+    Any heading matching this expression will not be present in the table of
+    contents
+*   `parents` ([`Test`][test], default: `tree`)
+    — allow headings to be children of certain node types.
+    Can by any [`unist-util-is`][is] compatible test
+*   `tight` (`boolean`, default: `false`)
+    — whether to compile list items tightly
+*   `ordered` (`boolean`, default: `false`)
+    — whether to compile list items as an ordered list, otherwise they are
+    unordered
+*   `prefix` (`string`, optional)
+    — add a prefix to links to headings in the table of contents.
+    Useful for example when later going from mdast to hast and sanitizing with
+    `hast-util-sanitize`.
 
-###### `options.tight`
+### `Result`
 
-Whether to compile list items tightly (`boolean?`, default: `false`).
+Results (TypeScript type).
 
-###### `options.ordered`
+###### Fields
 
-Whether to compile list items as an ordered list (`boolean?`, default: `false`).
-
-###### `options.prefix`
-
-Add a prefix to links to headings in the table of contents (`string?`, default:
-`null`).
-Useful for example when later going from [mdast][] to [hast][] and sanitizing
-with [`hast-util-sanitize`][sanitize].
-
-###### `options.parents`
-
-Allow headings to be children of certain node types (default: the to `toc` given
-`node`, to only allow top-level headings).
-Internally, uses [`unist-util-is`][is], so `parents` can be any
-`is`-compatible test.
-
-For example, the following code would allow headings under either `root` or
-`blockquote` to be used:
-
-```js
-toc(tree, {parents: ['root', 'blockquote']})
-```
-
-##### Returns
-
-An object representing the table of contents:
-
-*   `index` (`number?`)
-    — index of the node right after the  table of contents [heading][].
-    `-1` if no heading was found, `null` if no `heading` was given
-*   `endIndex` (`number?`)
-    — index of the first node after `heading` that is not part of its section.
+*   `index` (`number` or `null`)
+    — index of the node right after the table of contents heading, `-1` if no
+    heading was found, `null` if no `heading` was given
+*   `endIndex` (`number` or `null`)
+    — index of the first node after `heading` that is not part of its section,
     `-1` if no heading was found, `null` if no `heading` was given, same as
-    `index` if there are no nodes between `heading` and the first heading in the
-    table of contents
-*   `map` (`Node?`)
-    — list representing the generated table of contents.
-    `null` if no table of contents could be created, either because no heading
-    was found or because no following headings were found
+    `index` if there are no nodes between `heading` and the first heading in
+    the table of contents
+*   `map` ([`List`][list] or `null`)
+    — list representing the generated table of contents, `null` if no table of
+    contents could be created, either because no heading was found or because
+    no following headings were found
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports the types `Options` and `Result`.
+It exports the types [`Options`][api-options] and [`Result`][api-result].
 
 ## Compatibility
 
 Projects maintained by the unified collective are compatible with all maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
@@ -313,14 +305,20 @@ abide by its terms.
 
 [is]: https://github.com/syntax-tree/unist-util-is
 
-[heading]: https://github.com/syntax-tree/mdast#heading
+[list]: https://github.com/syntax-tree/mdast#list
 
 [node]: https://github.com/syntax-tree/mdast#node
-
-[parents]: #optionsparents
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
 
 [remark]: https://github.com/remarkjs/remark
 
 [remark-toc]: https://github.com/remarkjs/remark-toc
+
+[test]: https://github.com/syntax-tree/unist-util-is#test
+
+[api-toc]: #toctree-options
+
+[api-options]: #options
+
+[api-result]: #result
