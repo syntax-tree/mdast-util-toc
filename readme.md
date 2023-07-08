@@ -42,7 +42,7 @@ This package is wrapped in [`remark-toc`][remark-toc] for ease of use with
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 14.14+ and 16.0+), install with [npm][]:
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install mdast-util-toc
@@ -191,10 +191,13 @@ It exports the types [`Options`][api-options] and [`Result`][api-result].
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 14.14+ and 16.0+.
-Our projects sometimes work with older versions, but this is not guaranteed.
+
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line, `mdast-util-toc@^6`,
+compatible with Node.js 16.
 
 ## Security
 
@@ -264,9 +267,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/mdast-util-toc
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/mdast-util-toc.svg
+[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=mdast-util-toc
 
-[size]: https://bundlephobia.com/result?p=mdast-util-toc
+[size]: https://bundlejs.com/?q=mdast-util-toc
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
