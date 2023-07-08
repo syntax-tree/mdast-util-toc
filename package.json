@@ -52,10 +52,8 @@
     "prettier": "^2.0.0",
     "remark-cli": "^11.0.0",
     "remark-preset-wooorm": "^9.0.0",
-    "remark-usage": "^10.0.0",
     "type-coverage": "^2.0.0",
     "typescript": "^5.0.0",
-    "unified": "^10.0.0",
     "xo": "^0.54.0"
   },
   "scripts": {
@@ -76,13 +74,7 @@
   },
   "remarkConfig": {
     "plugins": [
-      "remark-preset-wooorm",
-      [
-        "remark-usage",
-        {
-          "heading": "use"
-        }
-      ]
+      "remark-preset-wooorm"
     ]
   },
   "typeCoverage": {
@@ -97,13 +89,6 @@
         "files": "test/**/*.js",
         "rules": {
           "no-await-in-loop": "off"
-        }
-      },
-      {
-        "files": "example.js",
-        "rules": {
-          "capitalized-comments": "off",
-          "import/order": "off"
         }
       }
     ],

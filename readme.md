@@ -64,20 +64,10 @@ In browsers with [`esm.sh`][esmsh]:
 
 ## Use
 
-Dependencies:
-
-```javascript
-/**
- * @typedef {import('mdast').Root} Root
- */
-
+```js
 import {toc} from 'mdast-util-toc'
-```
 
-Now running:
-
-```javascript
-/** @type {Root} */
+/** @type {import('mdast').Root} */
 const tree = {
   type: 'root',
   children: [
@@ -89,6 +79,8 @@ const tree = {
 }
 
 const table = toc(tree)
+
+console.dir(table, {depth: 3})
 ```
 
 Yields:
