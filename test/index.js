@@ -2,7 +2,7 @@
  * @typedef {import('mdast').BlockContent} BlockContent
  * @typedef {import('mdast').List} List
  * @typedef {import('mdast').Root} Root
- * @typedef {import('../index.js').Options} Options
+ * @typedef {import('mdast-util-toc').Options} Options
  */
 
 /**
@@ -17,13 +17,15 @@ import fs from 'node:fs/promises'
 import test from 'node:test'
 import {fromMarkdown} from 'mdast-util-from-markdown'
 import {gfmFromMarkdown} from 'mdast-util-gfm'
+import {toc} from 'mdast-util-toc'
 import {gfm} from 'micromark-extension-gfm'
 import {visit} from 'unist-util-visit'
-import {toc} from '../index.js'
 
 test('toc', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('../index.js')).sort(), ['toc'])
+    assert.deepEqual(Object.keys(await import('mdast-util-toc')).sort(), [
+      'toc'
+    ])
   })
 
   await t.test('should fail without node', async function () {
