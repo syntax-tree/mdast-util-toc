@@ -1,12 +1,13 @@
 /**
- * @typedef {import('mdast').Root} Root
- * @typedef {import('mdast').Blockquote} Blockquote
  * @typedef {import('mdast').BlockContent} BlockContent
  * @typedef {import('mdast').List} List
+ * @typedef {import('mdast').Root} Root
  * @typedef {import('../index.js').Options} Options
- *
+ */
+
+/**
  * @typedef TestConfig
- * @property {boolean} [useCustomHProperty]
+ * @property {boolean | undefined} [useCustomHProperty]
  *
  * @typedef {Options & TestConfig} Config
  */
@@ -19,69 +20,24 @@ import {gfmFromMarkdown} from 'mdast-util-gfm'
 import {gfm} from 'micromark-extension-gfm'
 import {visit} from 'unist-util-visit'
 import {toc} from '../index.js'
-import * as mod from '../index.js'
 
-test('toc', () => {
-  assert.deepEqual(
-    Object.keys(mod).sort(),
-    ['toc'],
-    'should expose the public api'
-  )
+test('toc', async function (t) {
+  await t.test('should expose the public api', async function () {
+    assert.deepEqual(Object.keys(await import('../index.js')).sort(), ['toc'])
+  })
 
-  assert.throws(() => {
-    // @ts-expect-error runtime.
-    toc()
-  }, 'should fail without node')
-})
+  await t.test('should fail without node', async function () {
+    assert.throws(function () {
+      // @ts-expect-error: check that a runtime error is thrown.
+      toc()
+    })
+  })
 
-test('Fixtures', async () => {
-  const root = new URL('fixtures/', import.meta.url)
-  const files = await fs.readdir(root)
-  let index = -1
+  await t.test('should work on a non-parent', async function () {
+    const result = toc({type: 'inlineCode', value: 'a'})
+    assert.deepEqual(result, {index: null, endIndex: null, map: null})
+  })
 
-  while (++index < files.length) {
-    const name = files[index]
-
-    if (name.indexOf('.') === 0) continue
-
-    const input = await fs.readFile(new URL(name + '/input.md', root))
-    /** @type {Config} */
-    let config = {}
-
-    try {
-      config = JSON.parse(
-        String(await fs.readFile(new URL(name + '/config.json', root)))
-      )
-    } catch {}
-
-    const {useCustomHProperty, ...options} = config
-
-    // To do: remove cast when `from-markdown` is released.
-    const tree = /** @type {Root} */ (
-      fromMarkdown(input, {
-        mdastExtensions: [gfmFromMarkdown()],
-        extensions: [gfm()]
-      })
-    )
-
-    if (useCustomHProperty) {
-      visit(tree, 'heading', (heading) => {
-        heading.data = {hProperties: {id: 'b'}}
-      })
-    }
-
-    const actual = toc(tree, options)
-
-    /** @type {Root} */
-    const expected = JSON.parse(
-      String(await fs.readFile(new URL(name + '/output.json', root)))
-    )
-
-    assert.deepEqual(actual, expected, name)
-  }
-})
-
-test('processing nodes', () => {
   /** @type {Array<BlockContent>} */
   const fragment = [
     {type: 'heading', depth: 1, children: [{type: 'text', value: 'Alpha'}]},
@@ -138,51 +94,97 @@ test('processing nodes', () => {
     ]
   }
 
-  assert.deepEqual(
-    toc({type: 'root', children: fragment}),
-    {
+  await t.test('should process root nodes', async function () {
+    assert.deepEqual(toc({type: 'root', children: fragment}), {
       index: null,
       endIndex: null,
       map: expectedRootMap
-    },
-    'can process root nodes'
-  )
+    })
+  })
 
-  assert.deepEqual(
-    toc({type: 'blockquote', children: fragment}),
-    {
+  await t.test('should process non-root nodes', async function () {
+    assert.deepEqual(toc({type: 'blockquote', children: fragment}), {
       index: null,
       endIndex: null,
       map: expectedRootMap
-    },
-    'can process non-root nodes'
-  )
+    })
+  })
 
-  assert.deepEqual(
-    toc(
+  await t.test('should process custom parent nodes', async function () {
+    assert.deepEqual(
+      toc(
+        {
+          type: 'root',
+          children: [
+            {
+              type: 'heading',
+              depth: 1,
+              children: [{type: 'text', value: 'Charlie'}]
+            },
+            {
+              type: 'heading',
+              depth: 2,
+              children: [{type: 'text', value: 'Delta'}]
+            },
+            {type: 'blockquote', children: fragment}
+          ]
+        },
+        {parents: 'blockquote'}
+      ),
       {
-        type: 'root',
-        children: [
-          {
-            type: 'heading',
-            depth: 1,
-            children: [{type: 'text', value: 'Charlie'}]
-          },
-          {
-            type: 'heading',
-            depth: 2,
-            children: [{type: 'text', value: 'Delta'}]
-          },
-          {type: 'blockquote', children: fragment}
-        ]
-      },
-      {parents: 'blockquote'}
-    ),
-    {
-      index: null,
-      endIndex: null,
-      map: expectedRootMap
-    },
-    'can process custom parent nodes'
-  )
+        index: null,
+        endIndex: null,
+        map: expectedRootMap
+      }
+    )
+  })
+})
+
+test('fixtures', async function (t) {
+  const root = new URL('fixtures/', import.meta.url)
+  const files = await fs.readdir(root)
+  let index = -1
+
+  while (++index < files.length) {
+    const name = files[index]
+
+    if (name.indexOf('.') === 0) continue
+
+    await t.test('should support `' + name + '`', async function () {
+      const input = await fs.readFile(new URL(name + '/input.md', root))
+      /** @type {Config} */
+      let config = {}
+
+      try {
+        config = JSON.parse(
+          String(await fs.readFile(new URL(name + '/config.json', root)))
+        )
+      } catch {}
+
+      const {useCustomHProperty, ...options} = config
+
+      // To do: remove cast when `from-markdown` is released.
+      const tree = /** @type {Root} */ (
+        fromMarkdown(input, {
+          mdastExtensions: [gfmFromMarkdown()],
+          extensions: [gfm()]
+        })
+      )
+
+      if (useCustomHProperty) {
+        visit(tree, 'heading', function (heading) {
+          heading.data = {hProperties: {id: 'b'}}
+        })
+      }
+
+      const actual = toc(tree, options)
+
+      /** @type {Root} */
+      const expected = JSON.parse(
+        String(await fs.readFile(new URL(name + '/output.json', root)))
+      )
+
+      assert.deepEqual(actual, expected)
+    })
+  }
 })
