@@ -95,8 +95,8 @@ Yields:
 
 ```javascript
 {
-  index: null,
-  endIndex: null,
+  index: undefined,
+  endIndex: undefined,
   map: {
     type: 'list',
     ordered: false,
@@ -171,18 +171,18 @@ Results (TypeScript type).
 
 ###### Fields
 
-*   `index` (`number` or `null`)
+*   `index` (`number` or `undefined`)
     — index of the node right after the table of contents heading, `-1` if no
-    heading was found, `null` if no `heading` was given
-*   `endIndex` (`number` or `null`)
+    heading was found, `undefined` if no `heading` was given
+*   `endIndex` (`number` or `undefined`)
     — index of the first node after `heading` that is not part of its section,
-    `-1` if no heading was found, `null` if no `heading` was given, same as
+    `-1` if no heading was found, `undefined` if no `heading` was given, same as
     `index` if there are no nodes between `heading` and the first heading in
     the table of contents
-*   `map` ([`List`][list] or `null`)
-    — list representing the generated table of contents, `null` if no table of
-    contents could be created, either because no heading was found or because
-    no following headings were found
+*   `map` ([`List`][list] or `undefined`)
+    — list representing the generated table of contents, `undefined` if no
+    table of contents could be created, either because no heading was found or
+    because no following headings were found
 
 ## Types
 

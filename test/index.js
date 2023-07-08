@@ -35,7 +35,11 @@ test('toc', async function (t) {
 
   await t.test('should work on a non-parent', async function () {
     const result = toc({type: 'inlineCode', value: 'a'})
-    assert.deepEqual(result, {index: null, endIndex: null, map: null})
+    assert.deepEqual(result, {
+      index: undefined,
+      endIndex: undefined,
+      map: undefined
+    })
   })
 
   /** @type {Array<BlockContent>} */
@@ -96,16 +100,16 @@ test('toc', async function (t) {
 
   await t.test('should process root nodes', async function () {
     assert.deepEqual(toc({type: 'root', children: fragment}), {
-      index: null,
-      endIndex: null,
+      index: undefined,
+      endIndex: undefined,
       map: expectedRootMap
     })
   })
 
   await t.test('should process non-root nodes', async function () {
     assert.deepEqual(toc({type: 'blockquote', children: fragment}), {
-      index: null,
-      endIndex: null,
+      index: undefined,
+      endIndex: undefined,
       map: expectedRootMap
     })
   })
@@ -132,8 +136,8 @@ test('toc', async function (t) {
         {parents: 'blockquote'}
       ),
       {
-        index: null,
-        endIndex: null,
+        index: undefined,
+        endIndex: undefined,
         map: expectedRootMap
       }
     )
@@ -177,7 +181,9 @@ test('fixtures', async function (t) {
         })
       }
 
-      const actual = toc(tree, options)
+      // Drop `undefined`s.
+      /** @type {Root} */
+      const actual = JSON.parse(JSON.stringify(toc(tree, options)))
 
       /** @type {Root} */
       const expected = JSON.parse(
