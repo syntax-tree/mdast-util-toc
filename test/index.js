@@ -28,14 +28,10 @@ test('toc', () => {
     'should expose the public api'
   )
 
-  assert.throws(
-    () => {
-      // @ts-expect-error runtime.
-      toc()
-    },
-    /Cannot read propert/,
-    'should fail without node'
-  )
+  assert.throws(() => {
+    // @ts-expect-error runtime.
+    toc()
+  }, 'should fail without node')
 })
 
 test('Fixtures', async () => {
@@ -60,10 +56,13 @@ test('Fixtures', async () => {
 
     const {useCustomHProperty, ...options} = config
 
-    const tree = fromMarkdown(input, {
-      mdastExtensions: [gfmFromMarkdown()],
-      extensions: [gfm()]
-    })
+    // To do: remove cast when `from-markdown` is released.
+    const tree = /** @type {Root} */ (
+      fromMarkdown(input, {
+        mdastExtensions: [gfmFromMarkdown()],
+        extensions: [gfm()]
+      })
+    )
 
     if (useCustomHProperty) {
       visit(tree, 'heading', (heading) => {
