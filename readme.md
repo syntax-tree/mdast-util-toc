@@ -51,14 +51,14 @@ npm install mdast-util-toc
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {toc} from 'https://esm.sh/mdast-util-toc@6'
+import {toc} from 'https://esm.sh/mdast-util-toc@7'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {toc} from 'https://esm.sh/mdast-util-toc@6?bundle'
+  import {toc} from 'https://esm.sh/mdast-util-toc@7?bundle'
 </script>
 ```
 
