@@ -12,20 +12,20 @@
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When should I use this?](#when-should-i-use-this)
-*   [Install](#install)
-*   [Use](#use)
-*   [API](#api)
-    *   [`toc(tree[, options])`](#toctree-options)
-    *   [`Options`](#options)
-    *   [`Result`](#result)
-*   [Types](#types)
-*   [Compatibility](#compatibility)
-*   [Security](#security)
-*   [Related](#related)
-*   [Contribute](#contribute)
-*   [License](#license)
+* [What is this?](#what-is-this)
+* [When should I use this?](#when-should-i-use-this)
+* [Install](#install)
+* [Use](#use)
+* [API](#api)
+  * [`toc(tree[, options])`](#toctree-options)
+  * [`Options`](#options)
+  * [`Result`](#result)
+* [Types](#types)
+* [Compatibility](#compatibility)
+* [Security](#security)
+* [Related](#related)
+* [Contribute](#contribute)
+* [License](#license)
 
 ## What is this?
 
@@ -119,10 +119,10 @@ This default behavior can be changed by passing `options.parents`.
 
 ###### Parameters
 
-*   `tree` ([`Node`][node])
-    — tree to search and generate from
-*   `options` ([`Options`][api-options], optional)
-    — configuration
+* `tree` ([`Node`][node])
+  — tree to search and generate from
+* `options` ([`Options`][api-options], optional)
+  — configuration
 
 ###### Returns
 
@@ -134,28 +134,28 @@ Configuration (TypeScript type).
 
 ###### Fields
 
-*   `heading` (`string`, optional)
-    — heading to look for, wrapped in `new RegExp('^(' + value + ')$', 'i')`
-*   `maxDepth` (`number`, default: `6`)
-    — maximum heading depth to include in the table of contents.
-    This is inclusive: when set to `3`, level three headings are included
-    (those with three hashes, `###`)
-*   `skip` (`string`, optional)
-    — headings to skip, wrapped in `new RegExp('^(' + value + ')$', 'i')`.
-    Any heading matching this expression will not be present in the table of
-    contents
-*   `parents` ([`Test`][test], default: `tree`)
-    — allow headings to be children of certain node types.
-    Can by any [`unist-util-is`][is] compatible test
-*   `tight` (`boolean`, default: `false`)
-    — whether to compile list items tightly
-*   `ordered` (`boolean`, default: `false`)
-    — whether to compile list items as an ordered list, otherwise they are
-    unordered
-*   `prefix` (`string`, optional)
-    — add a prefix to links to headings in the table of contents.
-    Useful for example when later going from mdast to hast and sanitizing with
-    `hast-util-sanitize`.
+* `heading` (`string`, optional)
+  — heading to look for, wrapped in `new RegExp('^(' + value + ')$', 'i')`
+* `maxDepth` (`number`, default: `6`)
+  — maximum heading depth to include in the table of contents.
+  This is inclusive: when set to `3`, level three headings are included
+  (those with three hashes, `###`)
+* `skip` (`string`, optional)
+  — headings to skip, wrapped in `new RegExp('^(' + value + ')$', 'i')`.
+  Any heading matching this expression will not be present in the table of
+  contents
+* `parents` ([`Test`][test], default: `tree`)
+  — allow headings to be children of certain node types.
+  Can by any [`unist-util-is`][is] compatible test
+* `tight` (`boolean`, default: `false`)
+  — whether to compile list items tightly
+* `ordered` (`boolean`, default: `false`)
+  — whether to compile list items as an ordered list, otherwise they are
+  unordered
+* `prefix` (`string`, optional)
+  — add a prefix to links to headings in the table of contents.
+  Useful for example when later going from mdast to hast and sanitizing with
+  `hast-util-sanitize`.
 
 ### `Result`
 
@@ -163,18 +163,18 @@ Results (TypeScript type).
 
 ###### Fields
 
-*   `index` (`number` or `undefined`)
-    — index of the node right after the table of contents heading, `-1` if no
-    heading was found, `undefined` if no `heading` was given
-*   `endIndex` (`number` or `undefined`)
-    — index of the first node after `heading` that is not part of its section,
-    `-1` if no heading was found, `undefined` if no `heading` was given, same as
-    `index` if there are no nodes between `heading` and the first heading in
-    the table of contents
-*   `map` ([`List`][list] or `undefined`)
-    — list representing the generated table of contents, `undefined` if no
-    table of contents could be created, either because no heading was found or
-    because no following headings were found
+* `index` (`number` or `undefined`)
+  — index of the node right after the table of contents heading, `-1` if no
+  heading was found, `undefined` if no `heading` was given
+* `endIndex` (`number` or `undefined`)
+  — index of the first node after `heading` that is not part of its section,
+  `-1` if no heading was found, `undefined` if no `heading` was given, same as
+  `index` if there are no nodes between `heading` and the first heading in
+  the table of contents
+* `map` ([`List`][list] or `undefined`)
+  — list representing the generated table of contents, `undefined` if no
+  table of contents could be created, either because no heading was found or
+  because no following headings were found
 
 ## Types
 
@@ -224,12 +224,12 @@ Always use [`hast-util-santize`][sanitize] when transforming to [hast][].
 
 ## Related
 
-*   [`github-slugger`](https://github.com/Flet/github-slugger)
-    — generate a slug just like GitHub does
-*   [`unist-util-visit`](https://github.com/syntax-tree/unist-util-visit)
-    — visit nodes
-*   [`unist-util-visit-parents`](https://github.com/syntax-tree/unist-util-visit-parents)
-    — like `visit`, but with a stack of parents
+* [`github-slugger`](https://github.com/Flet/github-slugger)
+  — generate a slug just like GitHub does
+* [`unist-util-visit`](https://github.com/syntax-tree/unist-util-visit)
+  — visit nodes
+* [`unist-util-visit-parents`](https://github.com/syntax-tree/unist-util-visit-parents)
+  — like `visit`, but with a stack of parents
 
 ## Contribute
 
