@@ -140,6 +140,10 @@ Configuration (TypeScript type).
   — maximum heading depth to include in the table of contents.
   This is inclusive: when set to `3`, level three headings are included
   (those with three hashes, `###`)
+* `minDepth` (`number`, default: `1`)
+  — minimum heading depth to include in the table of contents.
+  This is inclusive: when set to `3`, level three headings are included
+  (those with three hashes, `###`)
 * `skip` (`string`, optional)
   — headings to skip, wrapped in `new RegExp('^(' + value + ')$', 'i')`.
   Any heading matching this expression will not be present in the table of
