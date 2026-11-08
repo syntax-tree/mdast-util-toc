@@ -144,6 +144,24 @@ test('toc', async function (t) {
       }
     )
   })
+
+  await t.test(
+    'should generate correct slug when heading contains inline HTML',
+    async function () {
+      const tree = fromMarkdown(
+        '# Press <kbd>Ctrl</kbd>+<kbd>C</kbd>\n\n# E = mc<sup>2</sup>\n'
+      )
+      const result = toc(tree)
+      assert.deepEqual(
+        result.map?.children.map(function (item) {
+          const para = item.children[0]
+          const link = para && para.type === 'paragraph' && para.children[0]
+          return link && link.type === 'link' ? link.url : undefined
+        }),
+        ['#press-ctrlc', '#e--mc2']
+      )
+    }
+  )
 })
 
 test('fixtures', async function (t) {
