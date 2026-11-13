@@ -63,9 +63,13 @@ In browsers with [`esm.sh`][esmsh]:
 ## Use
 
 ```js
+/**
+ * @import {Root} from 'mdast'
+ */
+
 import {toc} from 'mdast-util-toc'
 
-/** @type {import('mdast').Root} */
+/** @type {Root} */
 const tree = {
   type: 'root',
   children: [

@@ -1,8 +1,6 @@
 /**
- * @typedef {import('mdast').BlockContent} BlockContent
- * @typedef {import('mdast').List} List
- * @typedef {import('mdast').Root} Root
- * @typedef {import('mdast-util-toc').Options} Options
+ * @import {BlockContent, List, Root} from 'mdast'
+ * @import {Options} from 'mdast-util-toc'
  */
 
 /**
