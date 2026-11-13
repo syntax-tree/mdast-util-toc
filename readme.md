@@ -1,14 +1,11 @@
 # mdast-util-toc
 
-[![Build][build-badge]][build]
-[![Coverage][coverage-badge]][coverage]
-[![Downloads][downloads-badge]][downloads]
-[![Size][size-badge]][size]
-[![Sponsors][sponsors-badge]][collective]
-[![Backers][backers-badge]][collective]
-[![Chat][chat-badge]][chat]
+[![Build][badge-build-image]][badge-build-url]
+[![Coverage][badge-coverage-image]][badge-coverage-url]
+[![Downloads][badge-downloads-image]][badge-downloads-url]
+[![Size][badge-size-image]][badge-size-url]
 
-[mdast][] utility to generate a table of contents.
+[mdast][github-mdast] utility to generate a table of contents.
 
 ## Contents
 
@@ -36,13 +33,14 @@ This package is a utility that generates a table of contents from a document.
 This utility is useful to generate a section so users can more easily navigate
 through a document.
 
-This package is wrapped in [`remark-toc`][remark-toc] for ease of use with
-[remark][], where it also injects the table of contents into the document.
+This package is wrapped in [`remark-toc`][github-remark-toc]
+for ease of use with [remark][github-remark],
+where it also injects the table of contents into the document.
 
 ## Install
 
-This package is [ESM only][esm].
-In Node.js (version 16+), install with [npm][]:
+This package is [ESM only][github-gist-esm].
+In Node.js (version 16+), install with [npm][npmjs-install]:
 
 ```sh
 npm install mdast-util-toc
@@ -119,7 +117,7 @@ This default behavior can be changed by passing `options.parents`.
 
 ###### Parameters
 
-* `tree` ([`Node`][node])
+* `tree` ([`Node`][github-mdast-node])
   — tree to search and generate from
 * `options` ([`Options`][api-options], optional)
   — configuration
@@ -148,9 +146,9 @@ Configuration (TypeScript type).
   — headings to skip, wrapped in `new RegExp('^(' + value + ')$', 'i')`.
   Any heading matching this expression will not be present in the table of
   contents
-* `parents` ([`Test`][test], default: `tree`)
+* `parents` ([`Test`][github-unist-util-is-test], default: `tree`)
   — allow headings to be children of certain node types.
-  Can by any [`unist-util-is`][is] compatible test
+  Can by any [`unist-util-is`][github-unist-util-is] compatible test
 * `tight` (`boolean`, default: `false`)
   — whether to compile list items tightly
 * `ordered` (`boolean`, default: `false`)
@@ -175,7 +173,7 @@ Results (TypeScript type).
   `-1` if no heading was found, `undefined` if no `heading` was given, same as
   `index` if there are no nodes between `heading` and the first heading in
   the table of contents
-* `map` ([`List`][list] or `undefined`)
+* `map` ([`List`][github-mdast-list] or `undefined`)
   — list representing the generated table of contents, `undefined` if no
   table of contents could be created, either because no heading was found or
   because no following headings were found
@@ -197,8 +195,12 @@ compatible with Node.js 16.
 
 ## Security
 
-Use of `mdast-util-toc` does not involve [hast][], user content, or change the
-tree, so there are no openings for [cross-site scripting (XSS)][xss] attacks.
+Use of `mdast-util-toc` does not involve [hast][github-hast],
+user content,
+or change the tree,
+so there are no openings for
+[cross-site scripting (XSS)][wikipedia-xss]
+attacks.
 
 Injecting `map` into the syntax tree may open you up to XSS attacks as existing
 nodes are copied into the table of contents.
@@ -224,7 +226,8 @@ Yields in `map`:
     -   [Charlie](#charlie)
 ```
 
-Always use [`hast-util-santize`][sanitize] when transforming to [hast][].
+Always use [`hast-util-sanitize`][github-hast-util-sanitize]
+when transforming to [hast][github-hast].
 
 ## Related
 
@@ -237,17 +240,20 @@ Always use [`hast-util-santize`][sanitize] when transforming to [hast][].
 
 ## Contribute
 
-See [`contributing.md`][contributing] in [`syntax-tree/.github`][health] for
-ways to get started.
-See [`support.md`][support] for ways to get help.
+See
+[`contributing.md`][health-contributing]
+in
+[`syntax-tree/.github`][health]
+for ways to get started.
+See [`support.md`][health-support] for ways to get help.
 
-This project has a [code of conduct][coc].
+This project has a [code of conduct][health-coc].
 By interacting with this repository, organization, or community you agree to
 abide by its terms.
 
 ## License
 
-[MIT][license] © [Jonathan Haines][author]
+[MIT][file-license] © [Jonathan Haines][barrythepenguin]
 
 <!-- Definitions -->
 
@@ -257,68 +263,58 @@ abide by its terms.
 
 [api-toc]: #toctree-options
 
-[author]: https://barrythepenguin.github.io
+[badge-build-image]: https://github.com/syntax-tree/mdast-util-toc/workflows/main/badge.svg
 
-[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+[badge-build-url]: https://github.com/syntax-tree/mdast-util-toc/actions
 
-[build]: https://github.com/syntax-tree/mdast-util-toc/actions
+[badge-coverage-image]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-toc.svg
 
-[build-badge]: https://github.com/syntax-tree/mdast-util-toc/workflows/main/badge.svg
+[badge-coverage-url]: https://codecov.io/github/syntax-tree/mdast-util-toc
 
-[chat]: https://github.com/syntax-tree/unist/discussions
+[badge-downloads-image]: https://img.shields.io/npm/dm/mdast-util-toc.svg
 
-[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+[badge-downloads-url]: https://www.npmjs.com/package/mdast-util-toc
 
-[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
+[badge-size-image]: https://img.shields.io/bundlejs/size/mdast-util-toc
 
-[collective]: https://opencollective.com/unified
+[badge-size-url]: https://bundlejs.com/?q=mdast-util-toc
 
-[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
-
-[coverage]: https://codecov.io/github/syntax-tree/mdast-util-toc
-
-[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-toc.svg
-
-[downloads]: https://www.npmjs.com/package/mdast-util-toc
-
-[downloads-badge]: https://img.shields.io/npm/dm/mdast-util-toc.svg
-
-[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+[barrythepenguin]: https://barrythepenguin.github.io
 
 [esmsh]: https://esm.sh
 
-[hast]: https://github.com/syntax-tree/hast
+[file-license]: license
+
+[github-gist-esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[github-hast]: https://github.com/syntax-tree/hast
+
+[github-hast-util-sanitize]: https://github.com/syntax-tree/hast-util-sanitize
+
+[github-mdast]: https://github.com/syntax-tree/mdast
+
+[github-mdast-list]: https://github.com/syntax-tree/mdast#list
+
+[github-mdast-node]: https://github.com/syntax-tree/mdast#node
+
+[github-remark]: https://github.com/remarkjs/remark
+
+[github-remark-toc]: https://github.com/remarkjs/remark-toc
+
+[github-unist-util-is]: https://github.com/syntax-tree/unist-util-is
+
+[github-unist-util-is-test]: https://github.com/syntax-tree/unist-util-is#test
 
 [health]: https://github.com/syntax-tree/.github
 
-[is]: https://github.com/syntax-tree/unist-util-is
+[health-coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
 
-[license]: license
+[health-contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
 
-[list]: https://github.com/syntax-tree/mdast#list
+[health-support]: https://github.com/syntax-tree/.github/blob/main/support.md
 
-[mdast]: https://github.com/syntax-tree/mdast
-
-[node]: https://github.com/syntax-tree/mdast#node
-
-[npm]: https://docs.npmjs.com/cli/install
-
-[remark]: https://github.com/remarkjs/remark
-
-[remark-toc]: https://github.com/remarkjs/remark-toc
-
-[sanitize]: https://github.com/syntax-tree/hast-util-sanitize
-
-[size]: https://bundlejs.com/?q=mdast-util-toc
-
-[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size\&query=$.size.compressedSize\&url=https://deno.bundlejs.com/?q=mdast-util-toc
-
-[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
-
-[support]: https://github.com/syntax-tree/.github/blob/main/support.md
-
-[test]: https://github.com/syntax-tree/unist-util-is#test
+[npmjs-install]: https://docs.npmjs.com/cli/install
 
 [typescript]: https://www.typescriptlang.org
 
-[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+[wikipedia-xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
