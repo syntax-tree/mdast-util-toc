@@ -117,7 +117,7 @@
               {
                 "type": "link",
                 "title": null,
-                "url": "#ihtmli",
+                "url": "#html",
                 "children": [
                   {
                     "type": "html",
@@ -130,6 +130,62 @@
                   {
                     "type": "html",
                     "value": "<i>"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "listItem",
+        "spread": false,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#comment",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Comment"
+                  },
+                  {
+                    "type": "html",
+                    "value": "<!-- HTML -->"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "listItem",
+        "spread": false,
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "link",
+                "title": null,
+                "url": "#tagfilter",
+                "children": [
+                  {
+                    "type": "html",
+                    "value": "<script>"
+                  },
+                  {
+                    "type": "text",
+                    "value": "Tagfilter"
+                  },
+                  {
+                    "type": "html",
+                    "value": "</script>"
                   }
                 ]
               }
@@ -169,7 +225,7 @@
               {
                 "type": "link",
                 "title": null,
-                "url": "#footnote-reference-",
+                "url": "#footnote-reference-1",
                 "children": [
                   {
                     "type": "text",

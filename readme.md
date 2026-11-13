@@ -17,6 +17,7 @@
   * [`toc(tree[, options])`](#toctree-options)
   * [`Options`](#options)
   * [`Result`](#result)
+* [HTML](#html)
 * [Types](#types)
 * [Compatibility](#compatibility)
 * [Security](#security)
@@ -147,6 +148,9 @@ Configuration (TypeScript type).
 * `parents` ([`Test`][github-unist-util-is-test], default: `tree`)
   — allow headings to be children of certain node types.
   Can be any [`unist-util-is`][github-unist-util-is] compatible test
+* `tagfilter` (`boolean`, default: `false`)
+  — whether to handle HTML tags according to
+  [GFM tagfilter][github-gfm-tagfilter]
 * `tight` (`boolean`, default: `false`)
   — whether to compile list items tightly
 * `ordered` (`boolean`, default: `false`)
@@ -175,6 +179,19 @@ Results (TypeScript type).
   — list representing the generated table of contents, `undefined` if no
   table of contents could be created, either because no heading was found or
   because no following headings were found
+
+## HTML
+
+This utility does not add IDs to headings.
+Links in the table of contents point to the IDs that GitHub or
+[`rehype-slug`][github-rehype-slug] would use.
+
+HTML in headings is turned into slugs like GitHub,
+especially if `tagfilter` is on.
+GFM footnotes are correctly numbered if
+[`mdast-util-gfm-footnote`][github-mdast-util-gfm-footnote] is used.
+The exception is HTML that changes the document structure,
+such as a `</h2>` in a heading as that would require a complete HTML parser.
 
 ## Types
 
@@ -284,6 +301,8 @@ abide by its terms.
 
 [file-license]: license
 
+[github-gfm-tagfilter]: https://github.github.com/gfm/#disallowed-raw-html-extension-
+
 [github-gist-esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
 
 [github-hast]: https://github.com/syntax-tree/hast
@@ -295,6 +314,10 @@ abide by its terms.
 [github-mdast-list]: https://github.com/syntax-tree/mdast#list
 
 [github-mdast-node]: https://github.com/syntax-tree/mdast#node
+
+[github-mdast-util-gfm-footnote]: https://github.com/syntax-tree/mdast-util-gfm-footnote
+
+[github-rehype-slug]: https://github.com/rehypejs/rehype-slug
 
 [github-remark]: https://github.com/remarkjs/remark
 

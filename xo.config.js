@@ -22,6 +22,9 @@ const xoConfig = [
       'require-unicode-regexp': 'off',
       'unicorn/max-nested-calls': 'off',
       'unicorn/no-array-sort': 'off',
+      'unicorn/no-declarations-before-early-exit': 'off',
+      'unicorn/prefer-early-return': 'off',
+      'unicorn/prefer-simple-condition-first': 'off',
       'unicorn/require-array-sort-compare': 'off',
       'unicorn/single-line-block-comment-style': 'off'
     },

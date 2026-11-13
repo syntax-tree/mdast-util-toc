@@ -1,6 +1,6 @@
 /**
  * @import {BlockContent, List, Root} from 'mdast'
- * @import {Options} from 'mdast-util-toc'
+ * @import {Options, Result} from 'mdast-util-toc'
  */
 
 /**
@@ -143,6 +143,81 @@ test('toc', async function (t) {
       }
     )
   })
+
+  await t.test('should support `tagfilter`', async function () {
+    assert.deepEqual(
+      slugs(toc(parse('# a<script>b</script>'), {tagfilter: true})),
+      ['#ascriptbscript']
+    )
+  })
+
+  await t.test('should support `tagfilter` (case)', async function () {
+    assert.deepEqual(slugs(toc(parse('# a<SCRIPT>'), {tagfilter: true})), [
+      '#ascript'
+    ])
+  })
+
+  await t.test('should support `tagfilter` (attributes)', async function () {
+    assert.deepEqual(slugs(toc(parse('# a<script b>'), {tagfilter: true})), [
+      '#ascript-b'
+    ])
+  })
+
+  await t.test('should support `tagfilter` (other tags)', async function () {
+    assert.deepEqual(slugs(toc(parse('# a<scripts>'), {tagfilter: true})), [
+      '#a'
+    ])
+  })
+
+  await t.test('should number footnotes by first reference', async function () {
+    assert.deepEqual(
+      slugs(toc(parse('# a[^y]\n\n# b[^x]\n\n[^x]: c\n\n[^y]: d'))),
+      ['#a1', '#b2']
+    )
+  })
+
+  await t.test('should reuse footnote numbers', async function () {
+    assert.deepEqual(slugs(toc(parse('# a[^x]\n\n# b[^x]\n\n[^x]: c'))), [
+      '#a1',
+      '#b1'
+    ])
+  })
+
+  await t.test(
+    'should number footnotes in definitions last',
+    async function () {
+      assert.deepEqual(
+        slugs(
+          toc(parse('[^x]: a\n\n    # b[^y]\n\n# c[^x]\n\n[^y]: d'), {
+            parents: 'footnoteDefinition'
+          })
+        ),
+        ['#b2']
+      )
+    }
+  )
+
+  await t.test(
+    'should not number footnotes in unused definitions',
+    async function () {
+      assert.deepEqual(
+        slugs(
+          toc(parse('[^x]: a\n\n    # b[^y]\n\n[^y]: c'), {
+            parents: 'footnoteDefinition'
+          })
+        ),
+        ['#b']
+      )
+    }
+  )
+
+  await t.test(
+    'should match `heading` without footnote numbers',
+    async function () {
+      const result = toc(parse('# a[^x]\n\n# b\n\n[^x]: c'), {heading: 'a'})
+      assert.equal(result.index, 1)
+    }
+  )
 })
 
 test('fixtures', async function (t) {
@@ -156,7 +231,7 @@ test('fixtures', async function (t) {
     if (name.indexOf('.') === 0) continue
 
     await t.test('should support `' + name + '`', async function () {
-      const input = await fs.readFile(new URL(name + '/input.md', root))
+      const input = await fs.readFile(new URL(name + '/input.md', root), 'utf8')
       /** @type {Config} */
       let config = {}
 
@@ -168,13 +243,7 @@ test('fixtures', async function (t) {
 
       const {useCustomHProperty, ...options} = config
 
-      // To do: remove cast when `from-markdown` is released.
-      const tree = /** @type {Root} */ (
-        fromMarkdown(input, {
-          mdastExtensions: [gfmFromMarkdown()],
-          extensions: [gfm()]
-        })
-      )
+      const tree = parse(input)
 
       if (useCustomHProperty) {
         visit(tree, 'heading', function (heading) {
@@ -196,3 +265,39 @@ test('fixtures', async function (t) {
     })
   }
 })
+
+/**
+ * Parse markdown.
+ *
+ * @param {string} value
+ *   Markdown.
+ * @returns {Root}
+ *   Tree.
+ */
+function parse(value) {
+  return fromMarkdown(value, {
+    extensions: [gfm()],
+    mdastExtensions: [gfmFromMarkdown()]
+  })
+}
+
+/**
+ * Get the URLs in a table of contents.
+ *
+ * @param {Result} result
+ *   Result.
+ * @returns {Array<string>}
+ *   URLs.
+ */
+function slugs(result) {
+  /** @type {Array<string>} */
+  const urls = []
+
+  if (result.map) {
+    visit(result.map, 'link', function (node) {
+      urls.push(node.url)
+    })
+  }
+
+  return urls
+}

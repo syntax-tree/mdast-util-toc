@@ -8,6 +8,10 @@
 
 # <i>HTML<i>
 
+# Comment<!-- HTML -->
+
+# <script>Tagfilter</script>
+
 # `inline.code()`
 
 # footnote reference [^1]
