@@ -1,38 +1,9 @@
 {
-  "name": "mdast-util-toc",
-  "version": "7.1.0",
-  "description": "mdast utility to generate a table of contents from a tree",
-  "license": "MIT",
-  "keywords": [
-    "unist",
-    "mdast",
-    "mdast-util",
-    "util",
-    "utility",
-    "markdown",
-    "table",
-    "contents",
-    "toc"
-  ],
-  "repository": "syntax-tree/mdast-util-toc",
-  "bugs": "https://github.com/syntax-tree/mdast-util-toc/issues",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/unified"
-  },
   "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "bugs": "https://github.com/syntax-tree/mdast-util-toc/issues",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
     "Jonathan Haines <jonno.haines@gmail.com> (https://barrythepenguin.github.io)"
-  ],
-  "sideEffects": false,
-  "type": "module",
-  "exports": "./index.js",
-  "files": [
-    "lib/",
-    "index.d.ts.map",
-    "index.d.ts",
-    "index.js"
   ],
   "dependencies": {
     "@types/mdast": "^4.0.0",
@@ -43,6 +14,7 @@
     "unist-util-is": "^6.0.0",
     "unist-util-visit": "^5.0.0"
   },
+  "description": "mdast utility to generate a table of contents from a tree",
   "devDependencies": {
     "@types/node": "^26.0.0",
     "c8": "^12.0.0",
@@ -56,14 +28,30 @@
     "typescript": "^6.0.0",
     "xo": "^5.0.0"
   },
-  "scripts": {
-    "prepack": "npm run build && npm run format",
-    "build": "tsc --build --clean && tsc --build && type-coverage",
-    "format": "remark . -qfo && prettier . -w --log-level warn && xo --fix",
-    "test-api": "node --conditions development test/index.js",
-    "test-coverage": "c8 --100 --reporter lcov npm run test-api",
-    "test": "npm run build && npm run format && npm run test-coverage"
+  "exports": "./index.js",
+  "files": [
+    "lib/",
+    "index.d.ts.map",
+    "index.d.ts",
+    "index.js"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
   },
+  "keywords": [
+    "contents",
+    "markdown",
+    "mdast-util",
+    "mdast",
+    "table",
+    "toc",
+    "unist",
+    "utility",
+    "util"
+  ],
+  "license": "MIT",
+  "name": "mdast-util-toc",
   "prettier": {
     "bracketSpacing": false,
     "semi": false,
@@ -77,10 +65,20 @@
       "remark-preset-wooorm"
     ]
   },
+  "repository": "syntax-tree/mdast-util-toc",
+  "scripts": {
+    "build": "tsc --build --clean && tsc --build && type-coverage",
+    "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo --fix",
+    "prepack": "npm run build && npm run format",
+    "test-api": "node --conditions development test/index.js",
+    "test-coverage": "c8 --100 --reporter lcov -- npm run test-api",
+    "test": "npm run build && npm run format && npm run test-coverage"
+  },
+  "sideEffects": false,
   "typeCoverage": {
     "atLeast": 100,
-    "detail": true,
-    "ignoreCatch": true,
     "strict": true
-  }
+  },
+  "type": "module",
+  "version": "7.1.0"
 }
