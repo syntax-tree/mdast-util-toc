@@ -110,7 +110,7 @@ If no `heading` is specified, creates a table of contents for all headings in
 `tree` is not changed.
 
 Links in the list to headings are based on GitHub’s style.
-Only top-level headings (those not in blockquotes or lists), are used.
+Only top-level headings (those not in blockquotes or lists) are used.
 This default behavior can be changed by passing `options.parents`.
 
 ###### Parameters
@@ -146,7 +146,7 @@ Configuration (TypeScript type).
   contents
 * `parents` ([`Test`][github-unist-util-is-test], default: `tree`)
   — allow headings to be children of certain node types.
-  Can by any [`unist-util-is`][github-unist-util-is] compatible test
+  Can be any [`unist-util-is`][github-unist-util-is] compatible test
 * `tight` (`boolean`, default: `false`)
   — whether to compile list items tightly
 * `ordered` (`boolean`, default: `false`)
@@ -193,15 +193,16 @@ compatible with Node.js 16.
 
 ## Security
 
-Use of `mdast-util-toc` does not involve [hast][github-hast],
-user content,
-or change the tree,
-so there are no openings for
+Use of `mdast-util-toc` does not change the tree
+and does not involve [hast][github-hast],
+so on its own it does not open you up to
 [cross-site scripting (XSS)][wikipedia-xss]
 attacks.
 
-Injecting `map` into the syntax tree may open you up to XSS attacks as existing
-nodes are copied into the table of contents.
+But the content of headings is copied into the table of contents,
+so dangerous content in headings
+(such as embedded HTML)
+also ends up in `map`.
 The following example shows how an existing script is copied into the table of
 contents.
 
@@ -215,13 +216,13 @@ For the following Markdown:
 ## Charlie
 ```
 
-Yields in `map`:
+Yields `map`, serialized:
 
 ```markdown
--   [Alpha](#alpha)
+* [Alpha](#alpha)
 
-    -   [Bravo<script>alert(1)</script>](#bravoscriptalert1script)
-    -   [Charlie](#charlie)
+  * [Bravo<script>alert(1)</script>](#bravoscriptalert1script)
+  * [Charlie](#charlie)
 ```
 
 Always use [`hast-util-sanitize`][github-hast-util-sanitize]
