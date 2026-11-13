@@ -46,12 +46,6 @@ In Node.js (version 16+), install with [npm][npmjs-install]:
 npm install mdast-util-toc
 ```
 
-In Deno with [`esm.sh`][esmsh]:
-
-```js
-import {toc} from 'https://esm.sh/mdast-util-toc@7'
-```
-
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
