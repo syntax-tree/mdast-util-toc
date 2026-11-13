@@ -36,25 +36,25 @@
   ],
   "dependencies": {
     "@types/mdast": "^4.0.0",
-    "@ungap/structured-clone": "^1.0.0",
     "@types/ungap__structured-clone": "^1.0.0",
+    "@ungap/structured-clone": "^1.0.0",
     "github-slugger": "^2.0.0",
     "mdast-util-to-string": "^4.0.0",
     "unist-util-is": "^6.0.0",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "c8": "^9.0.0",
+    "@types/node": "^26.0.0",
+    "c8": "^12.0.0",
     "mdast-util-from-markdown": "^2.0.0",
     "mdast-util-gfm": "^3.0.0",
     "micromark-extension-gfm": "^3.0.0",
     "prettier": "^3.0.0",
     "remark-cli": "^12.0.0",
-    "remark-preset-wooorm": "^10.0.0",
+    "remark-preset-wooorm": "^11.0.0",
     "type-coverage": "^2.0.0",
-    "typescript": "^5.0.0",
-    "xo": "^0.58.0"
+    "typescript": "^6.0.0",
+    "xo": "^5.0.0"
   },
   "scripts": {
     "prepack": "npm run build && npm run format",
@@ -82,19 +82,5 @@
     "detail": true,
     "ignoreCatch": true,
     "strict": true
-  },
-  "xo": {
-    "overrides": [
-      {
-        "files": "test/**/*.js",
-        "rules": {
-          "no-await-in-loop": "off"
-        }
-      }
-    ],
-    "prettier": true,
-    "rules": {
-      "unicorn/prefer-at": "off"
-    }
   }
 }

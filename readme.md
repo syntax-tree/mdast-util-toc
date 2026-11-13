@@ -251,74 +251,74 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://github.com/syntax-tree/mdast-util-toc/workflows/main/badge.svg
+[api-options]: #options
 
-[build]: https://github.com/syntax-tree/mdast-util-toc/actions
+[api-result]: #result
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-toc.svg
+[api-toc]: #toctree-options
 
-[coverage]: https://codecov.io/github/syntax-tree/mdast-util-toc
-
-[downloads-badge]: https://img.shields.io/npm/dm/mdast-util-toc.svg
-
-[downloads]: https://www.npmjs.com/package/mdast-util-toc
-
-[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=mdast-util-toc
-
-[size]: https://bundlejs.com/?q=mdast-util-toc
-
-[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+[author]: https://barrythepenguin.github.io
 
 [backers-badge]: https://opencollective.com/unified/backers/badge.svg
 
-[collective]: https://opencollective.com/unified
+[build]: https://github.com/syntax-tree/mdast-util-toc/actions
 
-[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+[build-badge]: https://github.com/syntax-tree/mdast-util-toc/workflows/main/badge.svg
 
 [chat]: https://github.com/syntax-tree/unist/discussions
 
-[npm]: https://docs.npmjs.com/cli/install
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
+
+[collective]: https://opencollective.com/unified
+
+[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
+
+[coverage]: https://codecov.io/github/syntax-tree/mdast-util-toc
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-toc.svg
+
+[downloads]: https://www.npmjs.com/package/mdast-util-toc
+
+[downloads-badge]: https://img.shields.io/npm/dm/mdast-util-toc.svg
 
 [esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
 
 [esmsh]: https://esm.sh
 
-[typescript]: https://www.typescriptlang.org
-
-[license]: license
-
-[author]: https://barrythepenguin.github.io
+[hast]: https://github.com/syntax-tree/hast
 
 [health]: https://github.com/syntax-tree/.github
 
-[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
-
-[support]: https://github.com/syntax-tree/.github/blob/main/support.md
-
-[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
-
-[mdast]: https://github.com/syntax-tree/mdast
-
-[hast]: https://github.com/syntax-tree/hast
-
-[sanitize]: https://github.com/syntax-tree/hast-util-sanitize
-
 [is]: https://github.com/syntax-tree/unist-util-is
+
+[license]: license
 
 [list]: https://github.com/syntax-tree/mdast#list
 
+[mdast]: https://github.com/syntax-tree/mdast
+
 [node]: https://github.com/syntax-tree/mdast#node
 
-[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+[npm]: https://docs.npmjs.com/cli/install
 
 [remark]: https://github.com/remarkjs/remark
 
 [remark-toc]: https://github.com/remarkjs/remark-toc
 
+[sanitize]: https://github.com/syntax-tree/hast-util-sanitize
+
+[size]: https://bundlejs.com/?q=mdast-util-toc
+
+[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size\&query=$.size.compressedSize\&url=https://deno.bundlejs.com/?q=mdast-util-toc
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[support]: https://github.com/syntax-tree/.github/blob/main/support.md
+
 [test]: https://github.com/syntax-tree/unist-util-is#test
 
-[api-toc]: #toctree-options
+[typescript]: https://www.typescriptlang.org
 
-[api-options]: #options
-
-[api-result]: #result
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting

@@ -8,6 +8,7 @@
 /**
  * @typedef TestConfig
  * @property {boolean | undefined} [useCustomHProperty]
+ *   Whether to add `hProperties.id` to headings.
  *
  * @typedef {Options & TestConfig} Config
  */
@@ -32,7 +33,7 @@ test('toc', async function (t) {
     assert.throws(function () {
       // @ts-expect-error: check that a runtime error is thrown.
       toc()
-    })
+    }, TypeError)
   })
 
   await t.test('should work on a non-parent', async function () {
@@ -185,6 +186,7 @@ test('fixtures', async function (t) {
 
       // Drop `undefined`s.
       /** @type {Root} */
+      // eslint-disable-next-line unicorn/prefer-structured-clone -- `structuredClone` keeps `undefined`s.
       const actual = JSON.parse(JSON.stringify(toc(tree, options)))
 
       /** @type {Root} */
